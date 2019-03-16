@@ -2,6 +2,7 @@
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
+const constants = require('../constants')
 const merge = require('webpack-merge')
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf')
@@ -54,7 +55,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: path.posix.join(constants.SERVER_VIEWS, 'index.html'),
       inject: true
     }),
     // copy custom static assets

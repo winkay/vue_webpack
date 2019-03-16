@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
+const constants = require('../constants')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -62,7 +63,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.build.index,
-      template: 'index.html',
+      template: path.posix.join(constants.SERVER_VIEWS, 'index.html'),
       inject: true,
       minify: {
         removeComments: true,
