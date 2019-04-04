@@ -10,6 +10,8 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
+const express = require('express')
+const constants = require('../constants')
 
 const spinner = ora('building for production...')
 spinner.start()
@@ -37,5 +39,25 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       '  Tip: built files are meant to be served over an HTTP server.\n' +
       '  Opening index.html over file:// won\'t work.\n'
     ))
+  })
+
+  /**************************server启动*********************************/
+  const server = require('../server/app')
+  var app = express()
+  // serve pure static assets
+  var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+  // app.use(staticPath, express.static('./static'));
+  app.use(staticPath, express.static(path.join(constants.DIST, staticPath)));
+  server(app);
+
+  // default port where dev server listens for incoming traffic
+  var port = process.env.PORT || config.build.port
+  module.exports = app.listen(port, '0.0.0.0', function (err) {
+    if (err) {
+      console.log(err)
+      return
+    }
+    var uri = 'http://localhost:' + port
+    console.warn('Server will be listening at ' + uri + '\n')
   })
 })
