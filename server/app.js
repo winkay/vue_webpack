@@ -14,14 +14,14 @@ const constants = require('../constants');
 const server = function(serverApp) {
   logger.configure({
     replaceConsole: true,
-    level: 'all',
+    level: 'WARN',
     appenders: {
       console: { type: "console" }
     },
     categories: {
       default: {
         appenders: ["console"],
-        level: 'all'
+        level: 'WARN'
       }
     }
   });
