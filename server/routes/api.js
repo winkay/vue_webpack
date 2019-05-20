@@ -10,7 +10,7 @@ var proxyOption = {
 };
 var proxyServer = proxy.createProxyServer(proxyOption);
 proxyServer.on("proxyReq", function(proxyReq, req) {
-	if(req.body && req.complete) {
+  if(req.body && req.complete) {
       const bodyData = JSON.stringify(req.body);
       proxyReq.setHeader('Content-Type', 'application/json');
       proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
@@ -22,7 +22,7 @@ proxyServer.on("proxyReq", function(proxyReq, req) {
 router.use(function(req, res, next) {
   proxyServer.web(req, res);
   proxyServer.on("error", function(e) {
-		logger.warn(e)
+    logger.warn(e)
   });
 });
 

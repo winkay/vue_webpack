@@ -1,6 +1,7 @@
 "use strict";
 
 import axios from "axios";
+// import qs from "qs";
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -10,7 +11,7 @@ import axios from "axios";
 // axios.defaults.baseURL = process.env.NODE_ENV === "development"?"/api":"/";
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
+  timeout: 30 * 1000 // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
 
@@ -19,6 +20,7 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
+    // config.data = qs.stringify(config.data);
     return config;
   },
   function(error) {

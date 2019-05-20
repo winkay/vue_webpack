@@ -16,6 +16,10 @@ const constants = require('../constants')
 const spinner = ora('building for production...')
 spinner.start()
 
+rm(constants.DIST, err => {
+  if (err) throw err
+})
+
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
   webpack(webpackConfig, (err, stats) => {

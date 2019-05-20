@@ -5,8 +5,8 @@
   "author": "Kay Wang https://github.com/winkay",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "node build/dev-server.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },

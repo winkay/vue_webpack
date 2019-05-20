@@ -52,7 +52,8 @@ const server = function(serverApp) {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   // app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.static(path.join(__dirname, '../dist')));
+  let staticPath = process.env.NODE_ENV == 'development'?'../dev':'../dist';
+  app.use(express.static(path.join(__dirname, staticPath)));
 
   app.use('/', indexRouter);
   app.use("/api", apiRouter);

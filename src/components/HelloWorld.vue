@@ -1,6 +1,9 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div>
+    <div class="hello">
+      <h1>{{ msg }}</h1>
+    </div>
+    <div>11111111111111</div>
   </div>
 </template>
 
@@ -9,21 +12,29 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Loading......'
     }
   },
   mounted() {
     this.testAxios();
   },
   methods: {
-    testAxios() {
+    async testAxios() {
       let self = this;
-      this.$axios({
+      let res = await this.$axios({
         method: 'get',
-        url: '/api/api.php?key=free&appid=0&msg=济南天气'
-      }).then(function (res) {
-        self.msg = JSON.stringify(res.data);
+        url: '/api/api.php?',
+        params:{
+          'key': 'free',
+          'appid': 0,
+          'msg': 'HelloWorld'
+        },
+        data:{}
       })
+      // .then(function (res) {
+      //   self.msg = JSON.stringify(res.data);
+      // })
+      self.msg = JSON.stringify(res.data);
     }
   }
 }
