@@ -8,7 +8,10 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8080 using webpack-dev-server
+npm start
+
+# serve with hot reload at localhost:8080 using express server
 npm run dev
 
 # build for production with minification
