@@ -48,6 +48,8 @@ const server = function(serverApp) {
   app.engine(".html", ejs.__express);
   app.set('view engine', 'html');
 
+  app.use("/api", apiRouter);
+
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
@@ -56,7 +58,6 @@ const server = function(serverApp) {
   app.use(express.static(path.join(__dirname, staticPath)));
 
   app.use('/', indexRouter);
-  app.use("/api", apiRouter);
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

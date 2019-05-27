@@ -9,14 +9,14 @@ var proxyOption = {
     changeOrigin:true
 };
 var proxyServer = proxy.createProxyServer(proxyOption);
-proxyServer.on("proxyReq", function(proxyReq, req) {
-  if(req.body && req.complete) {
-      const bodyData = JSON.stringify(req.body);
-      proxyReq.setHeader('Content-Type', 'application/json');
-      proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
-      proxyReq.write(bodyData);
-    }
-});
+// proxyServer.on("proxyReq", function(proxyReq, req) {
+//   if(req.body && req.complete) {
+//       const bodyData = JSON.stringify(req.body);
+//       proxyReq.setHeader('Content-Type', 'application/json');
+//       proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+//       proxyReq.write(bodyData);
+//     }
+// });
 
 /* GET users listing. */
 router.use(function(req, res, next) {
