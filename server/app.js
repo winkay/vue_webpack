@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var httpProxy = require('http-proxy');
 var express = require('express');
+var history = require('connect-history-api-fallback');
 var path = require('path');
 var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
@@ -27,6 +28,10 @@ const server = function(serverApp) {
   });
 
   var app = express();
+
+  app.use(history({
+    index:"/index.html"
+  }))
 
   serverApp.use(constants.ROOT_URL, app);
   //重定向到根路由
