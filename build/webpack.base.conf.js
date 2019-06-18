@@ -21,11 +21,15 @@ const createLintingRule = () => ({
   }
 })
 
+const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+
 module.exports = {
   mode: process.env.NODE_ENV,
   context: path.resolve(__dirname, '../'),
-  entry: {
+  entry:  process.env.NODE_ENV === 'production' ? {
     app: resolve('src/main.js')
+  }:{
+    app: [resolve('src/main.js'), hotMiddlewareScript]
   },
   output: {
     path: config.build.assetsRoot,

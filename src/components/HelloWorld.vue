@@ -3,7 +3,7 @@
     <div class="hello">
       <h1>{{ msg }}</h1>
     </div>
-    <div>11111111111111</div>
+    <div>auto reload test</div>
   </div>
 </template>
 

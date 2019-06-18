@@ -8,6 +8,7 @@ const rm = require('rimraf')
 const path = require('path')
 const chalk = require('chalk')
 const webpack = require('webpack')
+const webpackHotMiddleware = require('webpack-hot-middleware')
 const express = require('express')
 const config = require('../config')
 const constants = require('../constants')
@@ -26,7 +27,6 @@ var app = express()
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 // app.use(staticPath, express.static('./static'));
 app.use(staticPath, express.static(path.join(constants.DEV, staticPath)));
-server(app);
 
 rm(path.join(config.dev.assetsRoot, config.dev.assetsSubDirectory), err => {
   if (err) throw err
@@ -35,9 +35,6 @@ rm(path.join(config.dev.assetsRoot, config.dev.assetsSubDirectory), err => {
     aggregateTimeout: 300
     // poll: 1000
   }, (err, stats) => {
-    if (!!server && !!server.active) {
-      server.reload();
-    }
     if (err) throw err
 
     process.stdout.write(stats.toString({
@@ -53,6 +50,9 @@ rm(path.join(config.dev.assetsRoot, config.dev.assetsSubDirectory), err => {
     console.warn('Server will be listening at ' + uri + '\n')
     spinner.stop()
   })
+
+  app.use(webpackHotMiddleware(compiler))
+  server(app);
 
   // default port where dev server listens for incoming traffic
   var port = process.env.PORT || config.dev.port
