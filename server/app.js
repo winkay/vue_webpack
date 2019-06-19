@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-var httpProxy = require('http-proxy');
+// var httpProxy = require('http-proxy');
 var express = require('express');
 var history = require('connect-history-api-fallback');
 var path = require('path');
@@ -34,7 +34,7 @@ const server = function(serverApp) {
   }))
 
   serverApp.use(constants.ROOT_URL, app);
-  //重定向到根路由
+  // 重定向到根路由
   serverApp.use('/', function(req, res) {
     return res.redirect(constants.ROOT_URL);
   });
@@ -59,7 +59,7 @@ const server = function(serverApp) {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   // app.use(express.static(path.join(__dirname, 'public')));
-  let staticPath = process.env.NODE_ENV == 'development'?'../dev':'../dist';
+  let staticPath = process.env.NODE_ENV === 'development'?'../dev':'../dist';
   app.use(express.static(path.join(__dirname, staticPath)));
 
   app.use('/', indexRouter);

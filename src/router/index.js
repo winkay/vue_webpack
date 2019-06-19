@@ -1,22 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import routesMap from './map/' // 路由映射
 
 Vue.use(Router)
 
 export default new Router({
   mode:"history",
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path:'*',
-      redirect:function () {
-        return "/";
-      }
-    }
-  ]
+  routes: routesMap
 })

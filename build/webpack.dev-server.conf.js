@@ -24,7 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     path: constants.DEV,
     publicPath: config.dev.assetsPublicPath,
     filename: utils.assetsPath('js/[name].js'),
-    chunkFilename: utils.assetsPath('js/[id].[name].js')
+    chunkFilename: utils.assetsPath('js/[name].[hash:7].js')
   },
 
   // these devServer options should be customized in /config/index.js
