@@ -35,26 +35,30 @@ export default {
       if (self.loading === true) {
         return;
       }
-      self.loading = true;
-      let res = await this.$axios({
-        method: 'get',
-        url: '/api/api.php?',
-        params:{
-          'key': 'free',
-          'appid': 0,
-          'msg': self.remoteApiTestForm.searchText
-        },
-        data:{}
-      })
-      // .then(function (res) {
-      //   self.msg = JSON.stringify(res.data);
-      // })
-      if (res.data.result === 0) {
-        self.msg = res.data.content;
-      } else {
-        self.msg = "api error"
+      try {
+        self.loading = true;
+        let res = await this.$axios({
+          method: 'get',
+          url: '/api/api.php?',
+          params:{
+            'key': 'free',
+            'appid': 0,
+            'msg': self.remoteApiTestForm.searchText
+          },
+          data:{}
+        })
+        // .then(function (res) {
+        //   self.msg = JSON.stringify(res.data);
+        // })
+        if (res.data.result === 0) {
+          self.msg = res.data.content;
+        } else {
+          self.msg = "api error"
+        }
+        self.loading = false;
+      } catch (error) {
+        self.loading = false;
       }
-      self.loading = false;
     }
   }
 }

@@ -4,6 +4,7 @@
     <el-header class="layout-header">
       <div class="layout-header-image" style="width:200px">
         <div class="layout-logo">
+          <span>Vue Webpack</span>
           <!-- <img src="./assets/img/logo.png"/> -->
         </div>
       </div>
@@ -37,6 +38,17 @@ export default {
     return {
       key:""
     };
+  },
+  watch: {
+    // 切换页面
+    '$route' (to, from) {
+      // this.defaultActive = (this.$route.matched[0] || this.$route.matched[1]).name;
+      if (from.matched.length && to.matched.length &&
+        (from.matched[from.matched.length-1].path ===
+          to.matched[to.matched.length-1].path)) {
+        this.key = this.$route.name + +new Date();
+      }
+    }
   },
   methods: {
   }

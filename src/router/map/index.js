@@ -10,6 +10,7 @@ const routes = [{
 {
   path: '/HelloWorld',
   name: 'HelloWorld',
+  key:"HelloWorld",
   component: HelloWorld,
   meta:{
     roles:[],

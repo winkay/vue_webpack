@@ -501,6 +501,11 @@ body,html {
   width: 100%;
   padding-left: 2px;
 }
+.layout-header .layout-logo span {
+  font-size: 6vmin;
+  font-weight: bold;
+  color: #ffffff;
+}
 .layout-header .layout-nav{
   /*margin: 20px auto;*/
 }
