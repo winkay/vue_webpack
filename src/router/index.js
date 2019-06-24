@@ -7,7 +7,8 @@ Vue.use(Router)
 
 let routers = new Router({
   mode:"history",
-  routes: routesMap
+  routes: routesMap,
+  scrollBehavior: () => ({ y: 0 })
 });
 hooks(routers);
 

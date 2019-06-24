@@ -42,12 +42,7 @@ export default {
   watch: {
     // 切换页面
     '$route' (to, from) {
-      // this.defaultActive = (this.$route.matched[0] || this.$route.matched[1]).name;
-      if (from.matched.length && to.matched.length &&
-        (from.matched[from.matched.length-1].path ===
-          to.matched[to.matched.length-1].path)) {
-        this.key = this.$route.name + +new Date();
-      }
+      this.key = this.$route.path + +new Date();
     }
   },
   methods: {
