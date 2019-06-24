@@ -8,11 +8,21 @@ import ElementUI from 'element-ui'
 import "./utils/index";
 import VueCookie from 'vue-cookie';
 import i18n from "./i18n"; // 国际化
+import progressbar from './components/progressbar/progressbar.js';
+import iComponents from './components';
 
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
 Vue.use(VueCookie);
+
+Vue.use(progressbar, {
+  color: 'rgb(34, 153, 221)',
+  failedColor: 'red',
+  thickness: '3px'
+});
+
+Vue.use(iComponents);
 
 // 修改element-dialog默认配置
 ElementUI.Dialog.props.closeOnClickModal.default = false;

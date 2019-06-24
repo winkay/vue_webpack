@@ -32,6 +32,9 @@ export default {
   methods: {
     async doSearch() {
       let self = this;
+      if (self.loading === true) {
+        return;
+      }
       self.loading = true;
       let res = await this.$axios({
         method: 'get',
