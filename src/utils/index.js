@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import axios from "./axios";
+import vueBackTop from "./vueBackTop";
 
 const utils = {
-  axios
+  axios,
+  vueBackTop
 };
 
 Object.keys(utils).forEach((key, index) => {

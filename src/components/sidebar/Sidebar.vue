@@ -1,5 +1,6 @@
 <template>
-  <el-menu :default-active="defaultActive" :unique-opened="true" @open="handleMenuOpen" @select="handleSelectMenu">
+  <el-menu :default-active="defaultActive" :unique-opened="true" :collapse="isCollapse"
+   @open="handleMenuOpen" @select="handleSelectMenu">
     <template v-for="menu in menus">
       <el-submenu :index="menu.key" :key="menu.key" v-if="menu.subMenus">
         <template slot="title">
@@ -24,10 +25,19 @@
 import { routes, generateMenuFromRoutes } from '@/router/map/index'
 export default {
   name:"Sidebar",
+  props:{
+    isCollapse:{
+      type:Boolean,
+      default:false
+    },
+    iconSize:{
+      type:String,
+      default:'icon-size-16'
+    }
+  },
   data() {
     return {
       defaultActive:"",
-      iconSize:'icon-size-16',
       menus:generateMenuFromRoutes(routes, [])
     }
   },

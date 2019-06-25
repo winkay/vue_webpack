@@ -46,7 +46,18 @@ const routes = [{
       accessFlag:[],
       title:"嵌套路由-2",
       icon:"fa-envelope-o"
-    }
+    },
+    children:[{
+      path: 'reverseRoutes-2-1',
+      name: 'reverseRoutes-2-1',
+      key:"reverseRoutes-2-1",
+      component: ReverseRoutes,
+      meta:{
+        accessFlag:[],
+        title:"嵌套路由-2-1",
+        icon:"fa-envelope-o"
+      }
+    }]
   }]
 }, {
   path:'*',

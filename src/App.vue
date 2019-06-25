@@ -14,16 +14,20 @@
     </el-header>
     <el-container class="layout-content">
       <!-- 左侧导航栏 -->
-      <el-aside width="200px" class="layout-sidebar layout-transition">
-        <sidebar></sidebar>
+      <el-aside :width="sidebarWidth" class="layout-sidebar layout-transition" :class="{'layout-hide-text':isCollapse}">
+        <sidebar :isCollapse="isCollapse" :iconSize="iconSize"></sidebar>
       </el-aside>
       <!-- 内容区 -->
-      <el-main class="layout-content-main">
-          <div class="layout-content-workspace">
-            <transition name="slide-fade" mode="out-in">
-              <router-view :key="key"/>
-            </transition>
-          </div>
+      <el-main class="layout-content-main" :style="mainContentStyle" :class="{'layout-hide-text':isCollapse}">
+        <div class="layout-content-header">
+          <el-button type="text" :class="{active: isCollapse}" size="large" icon="fa-bars"
+          style="font-size:20px; transition:all .4s ease-in-out" @click="toggleCollapse"></el-button>
+        </div>
+        <div class="layout-content-workspace">
+          <transition name="slide-fade" mode="out-in">
+            <router-view :key="key"/>
+          </transition>
+        </div>
       </el-main>
     </el-container>
     <!-- set progressbar -->
@@ -36,7 +40,13 @@ export default {
   name: 'App',
   data() {
     return {
-      key:""
+      key:"",
+      isCollapse:false,
+      iconSize:"icon-size-16",
+      sidebarWidth:this.$cookie.get("language") === "en"?"220px":"200px",
+      mainContentStyle:{
+        left:this.$cookie.get("language") === "en"?"220px":"200px"
+      }
     };
   },
   watch: {
@@ -46,6 +56,14 @@ export default {
     }
   },
   methods: {
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse;
+      this.iconSize = this.isCollapse?"icon-size-20":"icon-size-16";
+      if (this.isCollapse) {
+        this.sidebarWidth = "";
+        this.mainContentStyle = {};
+      }
+    }
   }
 }
 </script>

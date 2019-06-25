@@ -7,14 +7,15 @@ import Vue from 'vue';
 import titleInterceptor from './beforeEach/titleInterceptor';
 import breadcrumbInterceptor from './beforeEach/breadcrumbInterceptor';
 import forceInterceptor from './beforeEach/forceInterceptor';
+import scrollToTop from './afterEach/scrollToTop'
 
 export default (router) => {
   router.beforeEach(titleInterceptor(router));
   router.beforeEach(forceInterceptor(router));
   router.beforeEach(breadcrumbInterceptor(router));
+  router.afterEach(scrollToTop);
 
   router.beforeEach((to, from, next) => {
-    Vue.Progress.hide();
     Vue.Progress.start();
     next();
   });
