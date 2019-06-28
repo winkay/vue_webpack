@@ -5,8 +5,8 @@ var logger = require('log4js').getLogger();
 
 var proxy = require('http-proxy');
 var proxyOption = {
-    target:constants.SERVER_IP,
-    changeOrigin:true
+  target:constants.SERVER_IP,
+  changeOrigin:true
 };
 var proxyServer = proxy.createProxyServer(proxyOption);
 // proxyServer.on("proxyReq", function(proxyReq, req) {

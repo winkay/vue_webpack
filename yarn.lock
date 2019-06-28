@@ -2665,10 +2665,10 @@ element-resize-detector@latest:
   dependencies:
     batch-processor "^1.0.0"
 
-element-ui@^2.6.1:
-  version "2.6.1"
-  resolved "http://registry.npm.taobao.org/element-ui/download/element-ui-2.6.1.tgz#86db79ff5de9b1bcc3187b65b3772b0c54074718"
-  integrity sha1-htt5/13psbzDGHtls3crDFQHRxg=
+element-ui@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.10.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felement-ui%2Fdownload%2Felement-ui-2.10.0.tgz#e6129f6b6d6ffe0dbad125a4a8d17d447a5f639c"
+  integrity sha1-5hKfa21v/g260SWkqNF9RHpfY5w=
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"

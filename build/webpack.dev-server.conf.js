@@ -61,6 +61,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: path.posix.join(constants.SERVER_VIEWS, 'index.html'),
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: 'error.html',
+      template: path.posix.join(constants.SERVER_VIEWS, 'error.html'),
+      inject: true
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

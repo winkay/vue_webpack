@@ -6,7 +6,7 @@ import hooks from './hooks/' // 路由钩子
 Vue.use(Router)
 
 let routers = new Router({
-  mode:"history",
+  // mode:"history",
   routes: routesMap
 });
 hooks(routers);

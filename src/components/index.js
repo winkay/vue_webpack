@@ -1,5 +1,5 @@
 import Navbar from './navbar/Navbar';
-import Sidebar from './sidebar/Sidebar';
+import Sidebar from './sidebar/Index';
 // import IEcharts from 'vue-echarts-v3/src/full.js';
 // import DataTable from './table/DataTable';
 const iComponents = {

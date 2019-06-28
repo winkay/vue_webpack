@@ -539,7 +539,7 @@ html {
 }
 
 .layout-header .layout-logo span {
-  font-size: 6vmin;
+  font-size: 25px;
   font-weight: bold;
   color: #ffffff;
 }
@@ -971,7 +971,7 @@ html {
 
 .layout-sidebar .el-menu .is-opened .el-submenu__title {
   color: #fff;
-  background: #024578;
+  /* background: #024578; */
   border-left: 3px solid #0062ac;
   font-weight: 600;
 }

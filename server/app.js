@@ -1,9 +1,10 @@
 var createError = require('http-errors');
 // var httpProxy = require('http-proxy');
 var express = require('express');
-var history = require('connect-history-api-fallback');
+// var history = require('connect-history-api-fallback');
 var path = require('path');
-var ejs = require('ejs');
+// var ejs = require('ejs');
+var nunjucks = require("nunjucks");
 var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
 var logger = require('log4js');
@@ -28,11 +29,6 @@ const server = function(serverApp) {
   });
 
   var app = express();
-
-  app.use(history({
-    index:"/index.html"
-  }))
-
   serverApp.use(constants.ROOT_URL, app);
   // 重定向到根路由
   serverApp.use('/', function(req, res) {
@@ -50,16 +46,27 @@ const server = function(serverApp) {
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
-  app.engine(".html", ejs.__express);
   app.set('view engine', 'html');
+  // app.engine(".html", ejs.__express);
+  // app.set('view engine', 'ejs');
+
+  let _isDev = process.env.NODE_ENV === 'development';
+  let staticPath = _isDev?constants.DEV:constants.DIST;
+  let nunjucksEnv = nunjucks.configure(staticPath, {
+    autoescape:true,
+    express:app,
+    watch:_isDev,
+    noCache:_isDev
+  })
+  nunjucksEnv.addFilter("safeJson", function(obj) {
+  });
 
   app.use("/api", apiRouter);
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
-  // app.use(express.static(path.join(__dirname, 'public')));
-  let staticPath = process.env.NODE_ENV === 'development'?'../dev':'../dist';
+  // app.use(history());
   app.use(express.static(path.join(__dirname, staticPath)));
 
   app.use('/', indexRouter);
