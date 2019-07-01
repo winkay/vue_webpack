@@ -20,6 +20,7 @@ const messages = {
 
 const i18n = new VueI18n({
   locale:VueCookie.get('language') || 'zh',
+  fallbackLocale: 'zh',
   messages
 })
 export default i18n;
