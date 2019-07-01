@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import "./utils/index";
 import VueCookie from 'vue-cookie';
 import i18n from "./i18n"; // 国际化
+import rule from './rule'; // 校验规则
 import progressbar from './components/progressbar/progressbar.js';
 import iComponents from './components';
 
@@ -28,6 +29,9 @@ Vue.use(iComponents);
 ElementUI.Dialog.props.closeOnClickModal.default = false;
 // form表单label位置默认设置
 ElementUI.Form.props.labelPosition.default = "right";
+
+// 全局校验规则
+rule.init(i18n);
 
 document.title = i18n.t('lang.mainTitle')
 Vue.config.productionTip = false

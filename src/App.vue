@@ -22,6 +22,14 @@
         <div class="layout-content-header">
           <el-button type="text" :class="{active: isCollapse}" size="large" icon="fa-bars"
           style="font-size:20px; transition:all .4s ease-in-out" @click="toggleCollapse"></el-button>
+          <div class="layout-content-breadcrumb">
+            <el-breadcrumb separator="/">
+              <el-breadcrumb-item v-for="(breadcrumb) in breadcrumbs"
+                :key="breadcrumb.key" :to="{path:breadcrumb.path, query:{__:nowDate}}">
+                {{$t(breadcrumb.name)}}
+                </el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
         </div>
         <div class="layout-content-workspace">
           <transition name="slide-fade" mode="out-in">
@@ -46,13 +54,36 @@ export default {
       sidebarWidth:this.$cookie.get("language") === "en"?"220px":"200px",
       mainContentStyle:{
         left:this.$cookie.get("language") === "en"?"220px":"200px"
-      }
+      },
+      nowDate:Date.now(),
+      breadcrumbs:[]
     };
   },
   watch: {
     // 切换页面
     '$route' (to, from) {
       this.key = this.$route.path + +new Date();
+      this.nowDate = Date.now();
+      this.breadcrumbs = [];
+      this.$route.matched.forEach((item, index) => {
+        // 面包屑导航的路由传参
+        let params = this.$route.params;
+        let routePath = item.path;
+        let paramKeys = Object.keys(params);
+        if (paramKeys && paramKeys.length > 0) {
+          for (let index = 0; index < paramKeys.length; index++) {
+            let paramKey = paramKeys[index];
+            routePath = routePath.replace(":" + paramKey, params[paramKey] || "");
+          }
+        } else {
+          routePath = item.path;
+        }
+        this.breadcrumbs.push({
+          path: routePath,
+          key: item.meta.key,
+          name: item.meta.title
+        })
+      });
     }
   },
   methods: {
