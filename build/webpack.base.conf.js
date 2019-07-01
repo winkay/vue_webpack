@@ -27,9 +27,9 @@ module.exports = {
   mode: process.env.NODE_ENV,
   context: path.resolve(__dirname, '../'),
   entry:  process.env.NODE_ENV === 'production' ? {
-    app: resolve('src/main.js')
+    app: ['babel-polyfill', resolve('src/main.js')]
   }:{
-    app: [resolve('src/main.js'), hotMiddlewareScript]
+    app: ['babel-polyfill', resolve('src/main.js'), hotMiddlewareScript]
   },
   output: {
     path: config.build.assetsRoot,
