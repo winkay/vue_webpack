@@ -1,11 +1,11 @@
 import Navbar from './navbar/Navbar';
 import Sidebar from './sidebar/Index';
-// import IEcharts from 'vue-echarts-v3/src/full.js';
+import IEcharts from 'vue-echarts-v3/src/full.js';
 // import DataTable from './table/DataTable';
 const iComponents = {
   Navbar: Navbar,
-  Sidebar: Sidebar
-  // IEcharts: IEcharts,
+  Sidebar: Sidebar,
+  IEcharts: IEcharts
   // DataTable,
 };
 
