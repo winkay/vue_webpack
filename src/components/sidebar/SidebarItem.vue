@@ -1,5 +1,5 @@
 <template>
-  <el-submenu :index="menu.meta.key" v-if="menu.subMenus">
+  <el-submenu :index="menu.meta.key" v-if="menu.subMenus && menu.subMenus.length > 0">
     <template slot="title">
       <i :class="[menu.meta.icon, iconSize]"></i>
       <span class="layout-text" :title="$t(menu.meta.title)">{{$t(menu.meta.title)}}</span>
