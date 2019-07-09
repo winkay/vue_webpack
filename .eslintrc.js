@@ -29,6 +29,7 @@ module.exports = {
     "space-before-function-paren": [0, "always"],
     // allow async-await
     'generator-star-spacing': 'off',
-    'no-debugger': 2
+    'no-debugger': 2,
+    'object-curly-spacing': 0
   }
 }

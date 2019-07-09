@@ -12,13 +12,13 @@ import "codemirror/mode/python/python.js";
 import "codemirror/theme/dracula.css";
 // require active-line.js
 import "codemirror/addon/selection/active-line.js";
-// closebrackets
-import "codemirror/addon/edit/closebrackets.js";
-import "codemirror/addon/edit/matchbrackets.js";
+// hint
+import "codemirror/addon/hint/show-hint.css";
+import "codemirror/addon/hint/show-hint.js";
+import "codemirror/addon/hint/anyword-hint.js";
 // fullscreen
 import "codemirror/addon/display/fullscreen.css";
 import "codemirror/addon/display/fullscreen.js";
-
 export default {
   data() {
     const code = `
@@ -40,7 +40,6 @@ class ExampleClass(ParentClass):
     return {
       code,
       cmOption: {
-        autoCloseBrackets: true,
         tabSize: 4,
         styleActiveLine: true,
         lineNumbers: true,
@@ -48,6 +47,7 @@ class ExampleClass(ParentClass):
         mode: "text/x-python",
         theme: "dracula",
         extraKeys: {
+          "Ctrl": "autocomplete",
           "F11": function(cm) {
             cm.setOption("fullScreen", !cm.getOption("fullScreen"));
           },
@@ -64,5 +64,8 @@ class ExampleClass(ParentClass):
   .CodeMirror {
     border: 1px solid #eee;
     height: 500px;
+  }
+  .CodeMirror pre {
+    font-size: 14px;
   }
 </style>

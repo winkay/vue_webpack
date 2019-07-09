@@ -10,7 +10,7 @@ const routes = [{
     key:"helloWorld",
     accessFlag:[],
     title:"route.apiTest",
-    icon:"fa-envelope-o"
+    icon:"fa-paper-plane"
   }
 }, {
   path: '/reverseRoutes',
@@ -20,7 +20,7 @@ const routes = [{
     key:"reverseRoutes",
     accessFlag:[],
     title:"嵌套路由",
-    icon:"fa-envelope-o"
+    icon:"fa-road"
   },
   children:[{
     path: 'reverseRoutes-1',
@@ -30,7 +30,7 @@ const routes = [{
       key:"reverseRoutes-1",
       accessFlag:[],
       title:"嵌套路由-1",
-      icon:"fa-envelope-o"
+      icon:"fa-road"
     },
     children:[{
       path: 'reverseRoutes-1-1',
@@ -40,7 +40,7 @@ const routes = [{
         key:"reverseRoutes-1-1",
         accessFlag:[],
         title:"嵌套路由-1-1",
-        icon:"fa-envelope-o"
+        icon:"fa-road"
       }
     }]
   }, {
@@ -51,7 +51,7 @@ const routes = [{
       key:"reverseRoutes-2",
       accessFlag:[],
       title:"嵌套路由-2",
-      icon:"fa-envelope-o"
+      icon:"fa-road"
     },
     children:[{
       path: 'reverseRoutes-2-1',
@@ -61,7 +61,7 @@ const routes = [{
         key:"reverseRoutes-2-1",
         accessFlag:[],
         title:"嵌套路由-2-1",
-        icon:"fa-envelope-o"
+        icon:"fa-road"
       }
     }]
   }]
