@@ -922,7 +922,7 @@ html {
 
 /*首页菜单背景颜色*/
 .layout-sidebar>.el-menu>.el-menu-item.is-active {
-  border-left: 0px solid #2dc497;
+  border-left: 3px solid #2dc497;
   /*background:#212935;*/
   background: #000000;
   color: #ffffff;

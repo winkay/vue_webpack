@@ -63,10 +63,9 @@ export default {
     },
     handleSelectMenu(index, indexPath) {
       let path = index;
-      if (indexPath.length > 1) {
+      if (indexPath.length >= 1) {
         path = "/" + indexPath.join("/");
       }
-
       this.$router.push({
         path: path,
         query: {
