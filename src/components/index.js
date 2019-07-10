@@ -2,14 +2,16 @@ import Navbar from './navbar/Navbar';
 import Sidebar from './sidebar/Index';
 import IEcharts from 'vue-echarts-v3/src/full.js';
 import { codemirror } from './codemirror';
-// import DataTable from './table/DataTable';
+import SearchForm from "./searchForm/SearchForm";
+import DataTable from './table/DataTable';
 
 const iComponents = {
   Navbar: Navbar,
   Sidebar: Sidebar,
   IEcharts: IEcharts,
-  codemirror: codemirror
-  // DataTable,
+  codemirror,
+  SearchForm,
+  DataTable
 };
 
 const install = function(Vue, opts = {}) {

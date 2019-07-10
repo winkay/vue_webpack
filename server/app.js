@@ -7,6 +7,7 @@ var path = require('path');
 var nunjucks = require("nunjucks");
 var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
+var favicon = require('serve-favicon');
 var logger = require('log4js');
 
 var indexRouter = require('./routes/index');
@@ -52,6 +53,7 @@ const server = function(serverApp) {
 
   let _isDev = process.env.NODE_ENV === 'development';
   let staticPath = _isDev?constants.DEV:constants.DIST;
+  // usding nunjucks html template engine
   let nunjucksEnv = nunjucks.configure(staticPath, {
     autoescape:true,
     express:app,
@@ -60,6 +62,8 @@ const server = function(serverApp) {
   })
   nunjucksEnv.addFilter("safeJson", function(obj) {
   });
+  // set favicon
+  app.use(favicon(path.join(__dirname, '../static', 'favicon.png')))
 
   app.use("/api", apiRouter);
 

@@ -37,7 +37,7 @@ if (typeof Object.assign != "function") {
 }
 // export
 export default {
-  name: "codemirror",
+  name: "Codemirror",
   data() {
     return {
       content: "",
