@@ -55,7 +55,6 @@ export default {
       this.getSubmenuPath(this.menus, index);
       let nestMenus = this.nestMenus;
       let openPath = path + "/" + nestMenus.subMenus[0].path;
-      console.log(openPath)
       this.$router.push({
         path: openPath,
         query: {
