@@ -4,6 +4,7 @@ import IEcharts from 'vue-echarts-v3/src/full.js';
 import { codemirror } from './codemirror';
 import SearchForm from "./searchForm/SearchForm";
 import DataTable from './table/DataTable';
+import OperationPanel from './OperationPanel';
 
 const iComponents = {
   Navbar: Navbar,
@@ -11,7 +12,8 @@ const iComponents = {
   IEcharts: IEcharts,
   codemirror,
   SearchForm,
-  DataTable
+  DataTable,
+  OperationPanel
 };
 
 const install = function(Vue, opts = {}) {

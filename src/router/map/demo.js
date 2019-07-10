@@ -1,6 +1,7 @@
 const HelloWorld = () => import(/* webpackChunkName: 'HelloWorld' */ '@/views/HelloWorld.vue');
 const ReverseRoutes = () => import(/* webpackChunkName: 'ReverseRoutes' */ '@/views/ReverseRoutes.vue');
 const Codemirror = () => import(/* webpackChunkName: 'Codemirror' */ '@/views/demo/Codemirror.vue');
+const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.vue');
 
 const routes = [{
   path: '/helloWorld',
@@ -74,6 +75,16 @@ const routes = [{
     accessFlag:"",
     title:"Codemirror",
     icon:"fa-code"
+  }
+}, {
+  path:'/table',
+  name: 'table',
+  component: Table,
+  meta:{
+    key:"table",
+    accessFlag:"",
+    title:"Table",
+    icon:"fa-table"
   }
 }]
 

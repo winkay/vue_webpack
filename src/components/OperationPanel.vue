@@ -140,7 +140,7 @@ export default {
         }
         this.menus.splice(index, 1, menu);
       });
-      //更多菜单
+      // 更多菜单
       this.menusMore.forEach((item, index) => {
         let menu = item;
         if (menu.readOnly) {

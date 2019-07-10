@@ -30,6 +30,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 'off',
     'no-debugger': 2,
-    'object-curly-spacing': 0
+    'object-curly-spacing': 0,
+    "no-extra-bind": 0
   }
 }
