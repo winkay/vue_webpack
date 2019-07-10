@@ -22,7 +22,7 @@ const routes = [{
   meta:{
     key:"reverseRoutes",
     accessFlag:"",
-    title:"嵌套路由",
+    title:"route.nestedRoute",
     icon:"fa-road"
   },
   children:[{
@@ -33,7 +33,7 @@ const routes = [{
     meta:{
       key:"reverseRoutes-1",
       accessFlag:"",
-      title:"嵌套路由-1",
+      title:"route.nestedRoute_1",
       icon:"fa-road"
     },
     children:[{
@@ -44,7 +44,7 @@ const routes = [{
       meta:{
         key:"reverseRoutes-1-1",
         accessFlag:"",
-        title:"嵌套路由-1-1",
+        title:"route.nestedRoute_1_1",
         icon:"fa-road"
       }
     }]
@@ -56,7 +56,7 @@ const routes = [{
     meta:{
       key:"reverseRoutes-2",
       accessFlag:"",
-      title:"嵌套路由-2",
+      title:"route.nestedRoute_2",
       icon:"fa-road"
     },
     children:[{
@@ -67,7 +67,7 @@ const routes = [{
       meta:{
         key:"reverseRoutes-2-1",
         accessFlag:"",
-        title:"嵌套路由-2-1",
+        title:"route.nestedRoute_2_1",
         icon:"fa-road"
       }
     }]
