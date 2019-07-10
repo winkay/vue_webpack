@@ -6,6 +6,7 @@ const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.v
 const routes = [{
   path: '/helloWorld',
   name: 'helloWorld',
+  alias: '/',
   component: HelloWorld,
   meta:{
     key:"helloWorld",
@@ -16,6 +17,7 @@ const routes = [{
 }, {
   path: '/reverseRoutes',
   name: 'reverseRoutes',
+  alias: '/',
   component: ReverseRoutes,
   meta:{
     key:"reverseRoutes",
@@ -26,6 +28,7 @@ const routes = [{
   children:[{
     path: 'reverseRoutes-1',
     name: 'reverseRoutes-1',
+    alias: '/',
     component: ReverseRoutes,
     meta:{
       key:"reverseRoutes-1",
@@ -36,6 +39,7 @@ const routes = [{
     children:[{
       path: 'reverseRoutes-1-1',
       name: 'reverseRoutes-1-1',
+      alias: '/',
       component: ReverseRoutes,
       meta:{
         key:"reverseRoutes-1-1",
@@ -47,6 +51,7 @@ const routes = [{
   }, {
     path: 'reverseRoutes-2',
     name: 'reverseRoutes-2',
+    alias: '/',
     component: ReverseRoutes,
     meta:{
       key:"reverseRoutes-2",
@@ -57,6 +62,7 @@ const routes = [{
     children:[{
       path: 'reverseRoutes-2-1',
       name: 'reverseRoutes-2-1',
+      alias: '/',
       component: ReverseRoutes,
       meta:{
         key:"reverseRoutes-2-1",
@@ -69,6 +75,7 @@ const routes = [{
 }, {
   path:'/codemirror',
   name: 'codemirror',
+  alias: '/',
   component: Codemirror,
   meta:{
     key:"codemirror",
@@ -79,6 +86,7 @@ const routes = [{
 }, {
   path:'/table',
   name: 'table',
+  alias: '/',
   component: Table,
   meta:{
     key:"table",

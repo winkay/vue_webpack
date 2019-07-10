@@ -3,6 +3,7 @@
     :default-active="defaultActive"
     :unique-opened="true"
     :collapse="isCollapse"
+    @open="handleMenuOpen"
     @select="handleSelectMenu">
     <sidebar-item v-for="menu in menus" :menu="menu" :key="menu.meta.key" :base-path="menu.path"></sidebar-item>
   </el-menu>
@@ -54,6 +55,7 @@ export default {
       this.getSubmenuPath(this.menus, index);
       let nestMenus = this.nestMenus;
       let openPath = path + "/" + nestMenus.subMenus[0].path;
+      console.log(openPath)
       this.$router.push({
         path: openPath,
         query: {
