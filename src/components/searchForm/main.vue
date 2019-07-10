@@ -68,7 +68,7 @@
   import { formProps } from './props'
 
   export default {
-    name: 'DiyForm',
+    name: 'SearchForm',
     props: formProps,
     data() {
       const { forms, fuzzy } = this.$props

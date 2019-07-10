@@ -136,10 +136,10 @@
 <script>
   import Vue from 'vue'
   import props from './props'
-  import searchForm from '../diyForm/main.vue'
+  import searchForm from '../searchForm/main.vue'
 
   export default {
-    name: 'ElSearchTablePagination',
+    name: 'DataTable',
     components: {
       searchForm
     },

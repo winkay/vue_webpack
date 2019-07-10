@@ -1,8 +1,8 @@
 
-import SearchTablePagination from 'main'
+import DataTable from 'main'
 
-SearchTablePagination.install = function(Vue) {
-  Vue.component(SearchTablePagination.name, SearchTablePagination)
+DataTable.install = function(Vue) {
+  Vue.component(DataTable.name, DataTable)
 };
 
-export default SearchTablePagination
+export default DataTable
