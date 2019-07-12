@@ -10,7 +10,7 @@ const routes = [{
   component: HelloWorld,
   meta:{
     key:"helloWorld",
-    accessFlag:"",
+    accessFlag:"m.helloWorld",
     title:"route.apiTest",
     icon:"fa-paper-plane"
   }
@@ -21,7 +21,7 @@ const routes = [{
   component: ReverseRoutes,
   meta:{
     key:"reverseRoutes",
-    accessFlag:"",
+    accessFlag:"m.reverseRoutes",
     title:"route.nestedRoute",
     icon:"fa-road"
   },
@@ -32,7 +32,7 @@ const routes = [{
     component: ReverseRoutes,
     meta:{
       key:"reverseRoutes-1",
-      accessFlag:"",
+      accessFlag:"m.reverseRoutes-1",
       title:"route.nestedRoute_1",
       icon:"fa-road"
     },
@@ -43,7 +43,7 @@ const routes = [{
       component: ReverseRoutes,
       meta:{
         key:"reverseRoutes-1-1",
-        accessFlag:"",
+        accessFlag:"m.reverseRoutes-1-1",
         title:"route.nestedRoute_1_1",
         icon:"fa-road"
       }
@@ -55,7 +55,7 @@ const routes = [{
     component: ReverseRoutes,
     meta:{
       key:"reverseRoutes-2",
-      accessFlag:"",
+      accessFlag:"m.reverseRoutes-2",
       title:"route.nestedRoute_2",
       icon:"fa-road"
     },
@@ -66,7 +66,7 @@ const routes = [{
       component: ReverseRoutes,
       meta:{
         key:"reverseRoutes-2-1",
-        accessFlag:"",
+        accessFlag:"m.reverseRoutes-2-1",
         title:"route.nestedRoute_2_1",
         icon:"fa-road"
       }
@@ -79,7 +79,7 @@ const routes = [{
   component: Codemirror,
   meta:{
     key:"codemirror",
-    accessFlag:"",
+    accessFlag:"m.codemirror",
     title:"Codemirror",
     icon:"fa-code"
   }
@@ -90,7 +90,7 @@ const routes = [{
   component: Table,
   meta:{
     key:"table",
-    accessFlag:"",
+    accessFlag:"m.table",
     title:"Table",
     icon:"fa-table"
   }

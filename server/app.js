@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-// var httpProxy = require('http-proxy');
+var httpProxy = require('http-proxy');
 var express = require('express');
 // var history = require('connect-history-api-fallback');
 var path = require('path');
@@ -10,9 +10,10 @@ var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var logger = require('log4js');
 
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
+// var indexRouter = require('./routes/index');
+// var apiRouter = require('./routes/api');
 const constants = require('../constants');
+const context = require('./utils/Context').getCurrentContext();
 
 const server = function(serverApp) {
   logger.configure({
@@ -35,6 +36,9 @@ const server = function(serverApp) {
   serverApp.use('/', function(req, res) {
     return res.redirect(constants.ROOT_URL);
   });
+  // 全局变量
+  global.DIR_NAME = __dirname;
+  global.context = context;
 
   // app.use(logger('dev'));
   let httpLogger = logger.connectLogger(logger.getLogger("http"), {
@@ -65,7 +69,7 @@ const server = function(serverApp) {
   // set favicon
   app.use(favicon(path.join(__dirname, '../static', 'favicon.png')))
 
-  app.use("/api", apiRouter);
+  // app.use("/api", apiRouter);
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -73,7 +77,28 @@ const server = function(serverApp) {
   // app.use(history());
   app.use(express.static(path.join(__dirname, staticPath)));
 
-  app.use('/', indexRouter);
+  // app.use('/', indexRouter);
+
+  // 初始化http-proxy
+  var proxyServer = httpProxy.createProxyServer({
+    target:constants.SERVER_IP,
+    changeOrigin:true
+  });
+  proxyServer.on("error", function(e) {
+    logger.getLogger("proxy").error(e.message);
+  });
+  context.setResource('proxy', proxyServer);
+
+  // 路由挂载
+  var routerFactory = require('./utils/RouterFactory');
+  routerFactory.mount(context.getResource('routes.json'), app, context);
+
+  // 未匹配的路由重定向到首页
+  app.use('/', function(req, res) {
+    let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
+    res.redirect(indexUrl);
+    return '';
+  });
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

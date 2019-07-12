@@ -1,0 +1,9 @@
+[{
+  "name" : "index",
+  "class" : "index",
+  "mapping": "/"
+}, {
+  "name" : "api",
+  "class" : "api",
+  "mapping": "/api"
+}]
