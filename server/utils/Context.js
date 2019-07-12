@@ -38,8 +38,12 @@ var currentContext = {
     }
   },
 
-  clearResource: function () {
-    currentContext._resource = {};
+  clearResource: function (name) {
+    if (name && currentContext._resource.name) {
+      delete currentContext._resource.name;
+    } else {
+      currentContext._resource = {};
+    }
   }
 };
 

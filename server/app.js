@@ -6,14 +6,15 @@ var path = require('path');
 // var ejs = require('ejs');
 var nunjucks = require("nunjucks");
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 // var logger = require('morgan');
 var favicon = require('serve-favicon');
 var logger = require('log4js');
 
+const context = require('./utils/Context').getCurrentContext();
 // var indexRouter = require('./routes/index');
 // var apiRouter = require('./routes/api');
 const constants = require('../constants');
-const context = require('./utils/Context').getCurrentContext();
 
 const server = function(serverApp) {
   logger.configure({
@@ -71,8 +72,8 @@ const server = function(serverApp) {
 
   // app.use("/api", apiRouter);
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   // app.use(history());
   app.use(express.static(path.join(__dirname, staticPath)));
@@ -94,11 +95,11 @@ const server = function(serverApp) {
   routerFactory.mount(context.getResource('routes.json'), app, context);
 
   // 未匹配的路由重定向到首页
-  app.use('/', function(req, res) {
-    let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
-    res.redirect(indexUrl);
-    return '';
-  });
+  // app.use('/', function(req, res) {
+  //   let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
+  //   res.redirect(indexUrl);
+  //   return '';
+  // });
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

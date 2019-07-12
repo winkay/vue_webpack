@@ -22,7 +22,7 @@ import "codemirror/addon/display/fullscreen.js";
 export default {
   data() {
     const code = `
-# Some Example code
+# Some Example code - python editor demo
 import os
 from package import ParentClass
 @nonsenseDecorator

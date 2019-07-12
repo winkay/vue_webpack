@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import demos from './demo';
 
 const routes = [
@@ -15,9 +16,10 @@ const routes = [
  * 根据路由定义生成菜单数据
  */
 let generateMenuFromRoutes = function (routes = []) {
+  const menuCodeList = Vue.menuCodeList || [];
   let menus = [];
   routes.some(route => {
-    if (!route.hidden) {
+    if (!route.hidden && menuCodeList.indexOf(route.meta.accessFlag) >= 0) {
       let m = {
         name: route.name,
         path: route.path,

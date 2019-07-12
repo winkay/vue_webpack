@@ -1,5 +1,5 @@
-const HelloWorld = () => import(/* webpackChunkName: 'HelloWorld' */ '@/views/HelloWorld.vue');
-const ReverseRoutes = () => import(/* webpackChunkName: 'ReverseRoutes' */ '@/views/ReverseRoutes.vue');
+const HelloWorld = () => import(/* webpackChunkName: 'HelloWorld' */ '@/views/demo/HelloWorld.vue');
+const ReverseRoutes = () => import(/* webpackChunkName: 'ReverseRoutes' */ '@/views/demo/ReverseRoutes.vue');
 const Codemirror = () => import(/* webpackChunkName: 'Codemirror' */ '@/views/demo/Codemirror.vue');
 const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.vue');
 

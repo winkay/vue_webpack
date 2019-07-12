@@ -6,7 +6,7 @@ exports.mount = function (configurations, parentRouter, context) {
   _.each(configurations, function (configuration) {
     var router;
     var name = configuration['name'] || configuration['class'] || configuration['mapping'] || '';
-    var filePath = configuration['class'] ? '../' + path.join('routes', configuration['class']) : '../routes';
+    var filePath = configuration['class'] ? '../' + path.join('routes', configuration['class']) : '../routes/default';
 
     try {
       router = require(filePath)(configuration, context);
