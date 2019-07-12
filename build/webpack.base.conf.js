@@ -62,7 +62,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        options: {
+           presets: ['es2015']
+        },
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client'), resolve('node_modules/vue-echarts-v3/src')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
