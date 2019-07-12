@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       defaultActive:"",
-      menus:generateMenuFromRoutes(routes, []),
+      menus:generateMenuFromRoutes(routes),
       nestMenus:{}
     }
   },

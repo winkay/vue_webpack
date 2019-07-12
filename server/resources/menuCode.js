@@ -1,7 +1,7 @@
 const demoMenus = [{
   code: "m.helloWorld",
   key: "helloWorld",
-  role: [0, 1, 2],
+  role: [0],
   show: true
 }, {
   code: "m.reverseRoutes",
@@ -11,23 +11,23 @@ const demoMenus = [{
   subMenus: [{
     code: "m.reverseRoutes-1",
     key: "reverseRoutes-1",
-    role: [0, 1, 2],
+    role: [0, 1],
     show: true,
     subMenus: [{
       code: "m.reverseRoutes-1-1",
       key: "reverseRoutes-1-1",
-      role: [0, 1, 2],
+      role: [0, 1],
       show: true
     }]
   }, {
     code: "m.reverseRoutes-2",
     key: "reverseRoutes-2",
-    role: [0, 1, 2],
+    role: [0, 2],
     show: true,
     subMenus: [{
       code: "m.reverseRoutes-2-1",
       key: "reverseRoutes-2-1",
-      role: [0, 1, 2],
+      role: [0, 2],
       show: true
     }]
   }]
