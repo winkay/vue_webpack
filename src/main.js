@@ -3,9 +3,9 @@
 import "./assets/styles/index.css"
 import Vue from 'vue'
 import App from './App'
+import "./utils/index";
 import router from './router'
 import ElementUI from 'element-ui'
-import "./utils/index";
 import VueCookie from 'vue-cookie';
 import i18n from "./i18n"; // 国际化
 import rule from './rule'; // 校验规则

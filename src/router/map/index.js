@@ -16,13 +16,10 @@ const routes = [
  * 根据路由定义生成菜单数据
  */
 let generateMenuFromRoutes = function (routes = []) {
-  const menuCodeList = Vue.menuCodeList || [];
-  filterRouteAccess(routes, menuCodeList);
-
   let menus = [];
   routes.some(route => {
     // 过滤隐藏、没有权限访问的菜单
-    if (!route.hidden && menuCodeList.indexOf(route.meta.accessFlag) >= 0) {
+    if (!route.hidden) {
       let m = {
         name: route.name,
         path: route.path,
@@ -37,10 +34,11 @@ let generateMenuFromRoutes = function (routes = []) {
   return menus;
 }
 
-function filterRouteAccess(routeList, menuCodeList) {
-  routeList.forEach((route, index) => {
+function filterRouteAccess(routeList, menuCodeList = []) {
+  for (let index = routeList.length - 1; index >= 0; index--) {
+    const route = routeList[index];
     if (route.meta && route.meta.accessFlag) {
-      if (route.meta.accessFlag === true || menuCodeList.indexOf(route.meta.accessFlag) >= 0) {
+      if (menuCodeList.indexOf(route.meta.accessFlag) >= 0) {
         if (route.children && route.children.length > 0) {
           filterRouteAccess(route.children, menuCodeList);
         }
@@ -52,9 +50,9 @@ function filterRouteAccess(routeList, menuCodeList) {
         filterRouteAccess(route.children, menuCodeList);
       }
     }
-  })
+  }
 }
-
+filterRouteAccess(routes, Vue.menuCodeList);
 export {
   routes,
   generateMenuFromRoutes
