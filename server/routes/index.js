@@ -5,7 +5,7 @@ module.exports = function (options, context) {
 
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    let menuCodeList = getMenuCode("projectuser"); // superadmin, projectadmin, projectuser
+    let menuCodeList = getMenuCode("superadmin"); // superadmin, projectadmin, projectuser
     res.header("Cache-Control", "no-cache");
     res.header("Pragma", "no-cache");
     res.header("Expires", 0);
