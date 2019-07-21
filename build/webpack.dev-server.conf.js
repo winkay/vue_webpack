@@ -21,10 +21,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: config.dev.devtool,
   output: {
-    path: constants.DEV,
+    path: config.dev.assetsRoot,
     publicPath: config.dev.assetsPublicPath,
     filename: utils.assetsPath('js/[name].js'),
-    chunkFilename: utils.assetsPath('js/[name].[hash:7].js')
+    chunkFilename: utils.assetsPath('js/[name].[hash:7].js'),
+    hotUpdateChunkFilename: 'static/hot/hot-update.js',
+    hotUpdateMainFilename: 'static/hot/hot-update.json'
   },
 
   // these devServer options should be customized in /config/index.js

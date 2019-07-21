@@ -70,14 +70,6 @@ const server = function(serverApp) {
   // set favicon
   app.use(favicon(path.join(__dirname, '../static', 'favicon.png')))
 
-  // app.use("/api", apiRouter);
-
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  // app.use(history());
-  app.use(express.static(path.join(__dirname, staticPath)));
-
   // app.use('/', indexRouter);
 
   // 初始化http-proxy
@@ -89,6 +81,15 @@ const server = function(serverApp) {
     logger.getLogger("proxy").error(e.message);
   });
   context.setResource('proxy', proxyServer);
+
+  // 使用axios+http-proxy，必须将api转发放在bodyParser之前，否则post请求后台无法接收body
+  app.use("/api", require('./routes/api')({}, context));
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  // app.use(history());
+  app.use(express.static(path.join(__dirname, staticPath)));
 
   // 路由挂载
   var routerFactory = require('./utils/RouterFactory');
