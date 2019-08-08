@@ -908,8 +908,8 @@ html {
 }
 
 .el-menu:not(.el-menu--horizontal) .el-menu-item.is-active {
-  border-left: 0px solid #24b78c;
-  background: #24b78c;
+  border-left: 3px solid #24b78c;
+  background: #090e15;
   color: #ffffff;
   font-weight: 600;
 }
@@ -972,7 +972,7 @@ html {
 .layout-sidebar .el-menu .is-opened .el-submenu__title {
   color: #fff;
   /* background: #024578; */
-  border-left: 3px solid #0062ac;
+  /* border-left: 3px solid #58b88c; */
   font-weight: 600;
 }
 
