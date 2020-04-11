@@ -82,11 +82,9 @@ const server = function(serverApp) {
   });
   context.setResource('proxy', proxyServer);
 
-  // 使用axios+http-proxy，必须将api转发放在bodyParser之前，否则post请求后台无法接收body
-  app.use("/api", require('./routes/api')({}, context));
-
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
+  // 使用axios+http-proxy，axios默认body为json格式，不需要parser
+  app.use(/^(?!\/api)/, bodyParser.json());
+  app.use(/^(?!\/api)/, bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   // app.use(history());
   app.use(express.static(path.join(__dirname, staticPath)));
