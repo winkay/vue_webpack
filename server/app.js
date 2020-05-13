@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var httpProxy = require('http-proxy');
 var express = require('express');
-// var history = require('connect-history-api-fallback');
+var history = require('connect-history-api-fallback');
 var path = require('path');
 // var ejs = require('ejs');
 var nunjucks = require("nunjucks");
@@ -82,11 +82,22 @@ const server = function(serverApp) {
   });
   context.setResource('proxy', proxyServer);
 
+  //对应Vue-Router history 模式，不需要请注释掉此部分，同时修改src/router/index.js中的mode部分
+  app.use(history({
+    htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+    rewrites: [
+      {
+        from: /^\/.*$/,
+        to: function (context) {
+          return "/";
+        }
+      }
+    ]
+  }));
   // 使用axios+http-proxy，axios默认body为json格式，不需要parser
   app.use(/^(?!\/api)/, bodyParser.json());
   app.use(/^(?!\/api)/, bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
-  // app.use(history());
   app.use(express.static(path.join(__dirname, staticPath)));
 
   // 路由挂载

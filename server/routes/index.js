@@ -3,7 +3,7 @@ module.exports = function (options, context) {
   var router = express.Router();
   var getMenuCode = require("../utils/GetMenuCodeList");
 
-  /* GET home page. */
+  /* GET index page */
   router.get('/', function(req, res, next) {
     let menuCodeList = getMenuCode("superadmin"); // superadmin, projectadmin, projectuser
     res.header("Cache-Control", "no-cache");

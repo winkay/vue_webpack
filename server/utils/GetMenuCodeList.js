@@ -10,24 +10,18 @@ var getMenuCodeList = function (roleType) {
     return [];
   }
   let menuCodeList = [];
-  getMenuCode(menuCodeList, menuCodes, "", 0, roleType);
+  getMenuCode(menuCodeList, menuCodes, roleType);
 
   return menuCodeList;
 }
 
-function getMenuCode(menuCodeList, menuList, parentCode, order, roleType) {
+function getMenuCode(menuCodeList, menuList, roleType) {
   menuList.forEach((menu) => {
     if (menu.show) {
       if (menu.role && menu.role.indexOf(roleType) >= 0) {
-        // menuCodeList.push({
-        //   menuCode: menu.code,
-        //   key: menu.key,
-        //   parentCode: parentCode,
-        //   order: ++order
-        // });
         menuCodeList.push(menu.code);
         if (menu.subMenus && menu.subMenus.length > 0) {
-          getMenuCode(menuCodeList, menu.subMenus, menu.code, order, roleType);
+          getMenuCode(menuCodeList, menu.subMenus, roleType);
         }
       }
     }

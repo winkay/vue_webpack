@@ -3,7 +3,7 @@ module.exports = function (options, context) {
   var router = express.Router();
 
   var proxy = context.getResource('proxy');
-  /* GET users listing. */
+  /* Proxy all /api router */
   router.use(function(req, res, next) {
     res.header("Cache-Control", "no-cache");
     proxy.web(req, res);

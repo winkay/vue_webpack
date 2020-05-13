@@ -1,5 +1,5 @@
 {
-  "name": "vue_webpack",
+  "name": "vue_element_express",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Kay Wang https://github.com/winkay",
@@ -15,7 +15,7 @@
     "codemirror": "^5.48.0",
     "d3": "^5.9.2",
     "echarts": "^4.1.0",
-    "element-ui": "^2.10.0",
+    "element-ui": "^2.13.1",
     "moment": "^2.24.0",
     "vue": "^2.6.9",
     "vue-cookie": "^1.1.4",
