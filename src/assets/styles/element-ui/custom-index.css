@@ -475,10 +475,6 @@ html {
   box-shadow: 0 0px 12px 0 rgba(0, 0, 0, .1);
 }
 
-.layout-content .layout-content-main .layout-content-header .active {
-  transform: rotate(-90deg);
-}
-
 .layout-content .layout-content-main .layout-content-workspace {
   padding: 10px 0px 10px;
   min-height: 600px;
@@ -1020,7 +1016,6 @@ html {
 /*折叠面板按钮和当前位置*/
 .layout-content-header>.el-button--text {
   color: #151d2a;
-  background: #c6dbf9;
   padding-left: 0;
   padding-right: 0;
   font-size: 14px !important;
@@ -1030,19 +1025,6 @@ html {
   margin-right: 4px;
 }
 
-.layout-content-header>.el-button--text:focus,
-.layout-content-header>.el-button--text:hover {
-  /*    color: #0091FF;
-    background-color: #024578;*/
-  color: #2dc497;
-  background-color: #090e15;
-  border-color: transparent;
-}
-
-.layout-content-header>.el-button--text:active {
-  color: #2dc497;
-  background-color: #090e15;
-}
 
 /*当前位置文字*/
 .el-breadcrumb {
@@ -1070,6 +1052,12 @@ html {
 .el-breadcrumb__inner.is-link:hover {
   color: #0062AC;
   cursor: pointer
+}
+.el-breadcrumb__item:last-child .el-breadcrumb__inner,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+  font-weight: 900;
 }
 
 /*el-alert el-alert--info说明文字段落*/

@@ -20,7 +20,7 @@
       <!-- 内容区 -->
       <el-main class="layout-content-main" :style="mainContentStyle" :class="{'layout-hide-text':isCollapse}">
         <div class="layout-content-header">
-          <el-button type="text" :class="{active: isCollapse}" size="large" icon="fa-bars"
+          <el-button type="text" size="large" :icon="breadcrumbIcon"
           style="font-size:20px; transition:all .4s ease-in-out" @click="toggleCollapse"></el-button>
           <div class="layout-content-breadcrumb">
             <el-breadcrumb separator="/">
@@ -50,6 +50,7 @@ export default {
     return {
       key:"",
       isCollapse:false,
+      breadcrumbIcon:"fa-dedent",
       iconSize:"icon-size-16",
       sidebarWidth:this.$cookie.get("language") === "en"?"220px":"200px",
       mainContentStyle:{
@@ -90,6 +91,7 @@ export default {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse;
       this.iconSize = this.isCollapse?"icon-size-20":"icon-size-16";
+      this.breadcrumbIcon = this.isCollapse?"fa-indent":"fa-dedent";
       if (this.isCollapse) {
         this.sidebarWidth = "";
         this.mainContentStyle = {};
