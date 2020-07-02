@@ -36,7 +36,7 @@ _axios.interceptors.response.use(
   function(response) {
     // Do something with response data
     Vue.Progress.finish();
-    return response;
+    return response.data;
   },
   function(error) {
     // Do something with response error

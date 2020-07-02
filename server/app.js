@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var httpProxy = require('http-proxy');
 var express = require('express');
 var history = require('connect-history-api-fallback');
+var fs = require('fs')
 var path = require('path');
 // var ejs = require('ejs');
 var nunjucks = require("nunjucks");
@@ -14,7 +15,7 @@ var logger = require('log4js');
 const context = require('./utils/Context').getCurrentContext();
 // var indexRouter = require('./routes/index');
 // var apiRouter = require('./routes/api');
-const constants = require('../constants');
+var constants = require('../constants');
 
 const server = function(serverApp) {
   logger.configure({
@@ -32,6 +33,9 @@ const server = function(serverApp) {
   });
 
   var app = express();
+  const serverIP = context.getResource('serverIP') || constants.SERVER_IP;
+  //  set server ip global
+  context.setResource('serverIP', serverIP);
   serverApp.use(constants.ROOT_URL, app);
   // 重定向到根路由
   serverApp.use('/', function(req, res) {
@@ -74,7 +78,7 @@ const server = function(serverApp) {
 
   // 初始化http-proxy
   var proxyServer = httpProxy.createProxyServer({
-    target:constants.SERVER_IP,
+    target:serverIP,
     changeOrigin:true
   });
   proxyServer.on("error", function(e) {
@@ -82,7 +86,7 @@ const server = function(serverApp) {
   });
   context.setResource('proxy', proxyServer);
 
-  //对应Vue-Router history 模式，不需要请注释掉此部分，同时修改src/router/index.js中的mode部分
+  // 对应Vue-Router history 模式，不需要请注释掉此部分，同时修改src/router/index.js中的mode部分
   app.use(history({
     htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
     rewrites: [
@@ -105,11 +109,11 @@ const server = function(serverApp) {
   routerFactory.mount(context.getResource('routes.json'), app, context);
 
   // 未匹配的路由重定向到首页
-  // app.use('/', function(req, res) {
-  //   let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
-  //   res.redirect(indexUrl);
-  //   return '';
-  // });
+  app.use('/', function(req, res) {
+    let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
+    res.redirect(indexUrl);
+    return '';
+  });
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
@@ -126,6 +130,29 @@ const server = function(serverApp) {
     res.status(err.status || 500);
     res.render('error');
   });
+
+  if (_isDev) {
+    // 监视constants.js文件变化
+    let reloadWait = false;
+    fs.watch(path.join(__dirname, '../constants.js'), function (event, filename) {
+      if (reloadWait) {
+        return;
+      }
+      reloadWait = setTimeout(() => {
+        reloadWait = false;
+      }, 100);
+      if (event === 'change') {
+        delete require.cache[require.resolve('../constants.js')]
+        var proxy = context.getResource('proxy');
+        setTimeout(() => {
+          constants = require('../constants.js');
+          console.log(`${event} server ip to ${constants.SERVER_IP}`)
+          context.setResource('serverIP', constants.SERVER_IP);
+          proxy.options.target = constants.SERVER_IP
+        })
+      }
+    })
+  }
 }
 
 module.exports = server;

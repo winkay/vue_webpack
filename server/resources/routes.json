@@ -6,4 +6,12 @@
   "name" : "api",
   "class" : "api",
   "mapping": "/api"
+}, {
+  "name" : "askme",
+  "class" : "askme",
+  "mapping": "/askme"
+}, {
+  "name" : "login",
+  "class" : "login",
+  "mapping": "/login"
 }]

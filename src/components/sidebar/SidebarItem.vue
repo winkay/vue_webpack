@@ -4,12 +4,6 @@
       <i :class="[menu.meta.icon, iconSize]"></i>
       <span class="layout-text" :title="$t(menu.meta.title)">{{$t(menu.meta.title)}}</span>
     </template>
-    <!-- <template v-for="subMenu in menu.subMenus">
-      <el-menu-item :key="subMenu.path" :index="subMenu.path">
-        <i :class="[subMenu.meta.icon]"></i>
-        <span class="layout-text" :title="$t(subMenu.meta.title)">{{$t(subMenu.meta.title)}}</span>
-      </el-menu-item>
-    </template> -->
     <sidebar-item v-for="subMenu in menu.subMenus" :menu="subMenu" :key="subMenu.path" :base-path="resolvePath(subMenu.path)"></sidebar-item>
   </el-submenu>
   <el-menu-item :index="menu.meta.key" v-else>

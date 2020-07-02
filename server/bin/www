@@ -17,7 +17,7 @@ const https = require('https');
 const logger = require('log4js').getLogger('http');
 process.env.NODE_ENV = 'production';
 
-/**************************server启动*********************************/
+/** ************************server启动*********************************/
 const server = require('../app')
 var app = express();
 // app.use('/', function(req, res, next){
@@ -30,7 +30,7 @@ var app = express();
 // });
 server(app);
 
-/**************************启动Https服务*********************************/
+/** ************************启动Https服务*********************************/
 // var httpsPort = 443;
 // var options = {
 //   pfx:fs.readFileSync(path.posix.join(constants.ROOT_DIR, 'server/ssl/server.pfx')),
@@ -44,12 +44,12 @@ server(app);
 //   console.log('https Server will be listening at ' + uri + "\n");
 // });
 
-/**************************启动Http服务*********************************/
+/** ************************ 启动Http服务 *********************************/
 var httpPort = 80;
-var httpServer = http.createServer(app).listen(httpPort, '0.0.0.0', function(err){
+var httpServer = http.createServer(app).listen(httpPort, '0.0.0.0', function(err) {
   if (err) {
     return;
   }
-  var uri = 'http://localhost' + httpPort;
+  var uri = 'http://localhost:' + httpPort;
   console.log('http Server will be listening at ' + uri + "\n");
 });
