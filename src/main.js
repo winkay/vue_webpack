@@ -4,12 +4,12 @@ import "./assets/styles/index.css"
 import Vue from 'vue'
 import App from './App'
 import "./utils/index";
+import progressbar from 'vue-progressbar';
 import router from './router'
 import ElementUI from 'element-ui'
 import VueCookie from 'vue-cookie';
 import i18n from "./i18n"; // 国际化
 import rule from './rule'; // 校验规则
-import progressbar from './components/progressbar/progressbar.js';
 import iComponents from './components';
 
 Vue.use(ElementUI, {
@@ -24,7 +24,6 @@ Vue.use(progressbar, {
 });
 
 Vue.use(iComponents);
-
 // 修改element-dialog默认配置
 ElementUI.Dialog.props.closeOnClickModal.default = false;
 // form表单label位置默认设置

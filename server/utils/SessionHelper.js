@@ -1,10 +1,11 @@
 class SessionHelper {
   static setSession(req, res, data) {
-    let dataResult = data.resData;
+    let dataResult = data.data;
 
     req.session["token"] = dataResult.token;
     req.session["userName"] = dataResult.userName;
-    req.session["roleType"] = dataResult.roleType;
+    req.session["account"] = dataResult.account;
+    req.session["role"] = dataResult.role;
   }
 
   static getSession(req, res) {

@@ -19,14 +19,14 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   function(config) {
-    Vue.Progress.start();
+    Vue.prototype.$Progress.start();
     // Do something before request is sent
     // config.data = qs.stringify(config.data);
     return config;
   },
   function(error) {
     // Do something with request error
-    Vue.Progress.fail();
+    Vue.prototype.$Progress.fail();
     return Promise.reject(error);
   }
 );
@@ -35,12 +35,12 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   function(response) {
     // Do something with response data
-    Vue.Progress.finish();
+    Vue.prototype.$Progress.finish();
     return response.data;
   },
   function(error) {
     // Do something with response error
-    Vue.Progress.fail();
+    Vue.prototype.$Progress.fail();
     return Promise.reject(error);
   }
 );

@@ -9,10 +9,8 @@ module.exports = function() {
     ],
     // public zone
     allow: [ // 白名单
-      '/login.html',
-      '/timeout.html',
-      /^\/static\/[a-z0-9_\-\/.%]+/i,
       '/error.html',
+      /^\/static\/[a-z0-9_\-\/.%]+/i,
       /^\/api\/[a-z0-9_\-\/.%]+/i,
       /^\/node-api\/[a-z0-9_\-\/.%]+/i,
       /^.+\.js/g,

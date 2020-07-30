@@ -477,7 +477,7 @@ html {
 
 .layout-content .layout-content-main .layout-content-workspace {
   padding: 10px 0px 10px;
-  min-height: 600px;
+  /* min-height: 600px; */
 }
 
 .layout-content .layout-content-main .layout-content-breadcrumb {

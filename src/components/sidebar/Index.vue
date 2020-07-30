@@ -9,7 +9,7 @@
   </el-menu>
 </template>
 <script>
-import { routes, generateMenuFromRoutes } from '@/router/map/index'
+import { asyncRoutes, generateMenuFromRoutes } from '@/router/index'
 import SidebarItem from './SidebarItem'
 export default {
   name:"Index",
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       defaultActive:"",
-      menus:generateMenuFromRoutes(routes),
+      menus:generateMenuFromRoutes(asyncRoutes),
       nestMenus:{}
     }
   },
