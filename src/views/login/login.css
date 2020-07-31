@@ -13,7 +13,6 @@ body {
 .login-layout {
   height: 100%;
   width: 100%;
-  background: url(../../assets/image/login/ai_login_bg.png);
   background-color: #001038;
   padding-top: 0;
   background-attachment: fixed;

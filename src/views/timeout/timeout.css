@@ -13,9 +13,6 @@ html {
 .jump_layout {
   height: 100%;
   width: 100%;
-  background-attachment: fixed;
-  background: url(../../assets/image/timeout/jump_bg.jpg) repeat-x;
-  background-position: right;
   text-align: center;
   background-color: #c1d3f1;
   padding-top: 0px;
@@ -40,12 +37,9 @@ html {
 }
 
 .jump_info {
-  background: url(../../assets/image/timeout/jumpicon.png) no-repeat;
-  background-position: 60px 80px;
   width: 862px;
   height: 495px;
   text-align: left;
-
 }
 
 .jump_info p {
