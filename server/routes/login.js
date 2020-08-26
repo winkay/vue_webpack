@@ -45,8 +45,8 @@ module.exports = function (options, context) {
     req.session.regenerate(function (err) {
       if (err) {
         res.json({
-          'flag': false,
-          'data': 'session regenerate failed'
+          flag: false,
+          data: 'session regenerate failed'
         });
         return;
       }

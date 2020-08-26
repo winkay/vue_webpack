@@ -10,6 +10,7 @@
 ****************************************************************************/
 var express = require('express');
 var constants = require('../../constants');
+var config = require('../../config');
 var path = require('path');
 const fs = require('fs');
 const http = require('http');
@@ -20,6 +21,10 @@ process.env.NODE_ENV = 'production';
 /** ************************server启动*********************************/
 const server = require('../app')
 var app = express();
+
+var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+app.use(staticPath, express.static(path.join(constants.DIST, staticPath)));
+
 // app.use('/', function(req, res, next){
 //   if(req.protocol != 'https'){
 //     logger.warn("redirect to https://" + req.headers.host + req.originalUrl);
@@ -40,12 +45,12 @@ server(app);
 //   if (err) {
 //     return;
 //   }
-//   var uri = 'https://localhost';
+//   var uri = 'https://localhost:' + httpsPort;
 //   console.log('https Server will be listening at ' + uri + "\n");
 // });
 
 /** ************************ 启动Http服务 *********************************/
-var httpPort = 80;
+var httpPort = 8080;
 var httpServer = http.createServer(app).listen(httpPort, '0.0.0.0', function(err) {
   if (err) {
     return;

@@ -14,4 +14,8 @@
   "name" : "login",
   "class" : "login",
   "mapping": "/login"
+}, {
+  "name" : "userinfo",
+  "class" : "userinfo",
+  "mapping": "/userinfo"
 }]

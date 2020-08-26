@@ -10,9 +10,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // session
 var session = require('express-session');
-var FileStore = require('session-file-store');
+var FileStore = require('session-file-store')(session);
 var favicon = require('serve-favicon');
 var logger = require('log4js');
+
+var helmet = require('helmet');
+var tls = require('tls')
+var compression = require('compression');
 
 const context = require('./utils/Context').getCurrentContext();
 var constants = require('../constants');
@@ -43,6 +47,9 @@ const server = function (serverApp) {
   serverApp.use('/', function (req, res) {
     return res.redirect(constants.ROOT_URL);
   });
+  serverApp.disable('x-powered-by');
+  app.disable('x-powered-by');
+
   // 全局变量
   global.DIR_NAME = __dirname;
   global.context = context;
@@ -55,6 +62,72 @@ const server = function (serverApp) {
     }
   });
   app.use(httpLogger);
+
+  /** ************************安全相关START********************************* */
+  // 禁用tls重协商
+  tls.CLIENT_RENEG_LIMIT = 0;
+  tls.CLIENT_RENEG_WINDOW = 0;
+  app.use(helmet());
+  app.use(helmet.referrerPolicy({
+    policy: "same-origin"
+  }));
+  app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "http:"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ['data:', "'self'"],
+      connectSrc: ["'self'", 'wss://*:*', 'ws:', 'http:', 'https:'],
+      fontSrc: ['data:', "'self'"],
+      objectSrc: ["'self'"],
+      frameSrc: ["'self'", 'http:', 'https:']
+    }
+  }));
+  app.use(compression());
+  app.disable('view cache');
+  app.enable('trust proxy');
+  app.set('trust proxy', 1); // trust first proxy
+
+  // check http method
+  app.use(function (req, res, next) {
+    const disabledMethods = ['HEAD', 'OPTIONS'];
+    if (disabledMethods.includes(req.method)) {
+      res.status(403)
+      res.end()
+    } else {
+      next()
+    }
+  })
+  // csrf filter
+  app.use('/', function (req, res, next) {
+    const referer = req.headers.referer;
+    if (typeof (referer) === "undefined") {
+      if (req.method === 'GET') {
+        next();
+      } else {
+        console.error(`referer is undefined, request method is ${req.method}`)
+        res.status(406);
+        res.end();
+      }
+    } else {
+      if (referer !== null && referer !== "") {
+        const protocol = req.protocol;
+        const host = req.hostname;
+        const originalUrl = protocol + "://" + host;
+        const localUrl = protocol + "://localhost"; // 本地联调
+        if (referer.indexOf(originalUrl) === 0 || referer.indexOf(localUrl) === 0) {
+          next();
+        } else {
+          console.error(`referer is ${referer}, originalUrl is ${originalUrl}`)
+          res.status(406);
+          res.end();
+        }
+      } else {
+        next();
+      }
+    }
+  });
+  /** ************************安全相关END********************************* */
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
@@ -125,11 +198,11 @@ const server = function (serverApp) {
   routerFactory.mount(context.getResource('routes.json'), app, context);
 
   // 未匹配的路由重定向到首页
-  app.use('/', function (req, res) {
-    let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
-    res.redirect(indexUrl);
-    return '';
-  });
+  // app.use('/', function (req, res) {
+  //   let indexUrl = req.baseUrl ? (req.baseUrl + '/') : '/';
+  //   res.redirect(indexUrl);
+  //   return '';
+  // });
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
