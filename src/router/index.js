@@ -7,6 +7,8 @@ Vue.use(Router)
 
 let routers = new Router({
   mode:"history", // Vue-Router history 模式，不需要请注释掉此部分，同时修改server/app.js中的history()部分
+  base: process.env.BASE_URL,
+  scrollBehavior: () => ({ y: 0 }),
   routes: routesMap
 });
 hooks(routers);
