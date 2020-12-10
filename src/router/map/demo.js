@@ -7,6 +7,7 @@ const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.v
 const routes = [{
   path: '/helloWorld',
   component: Layout,
+  alias:'/',
   redirect: '/helloWorld/index',
   meta:{
     key:"helloWorld",
@@ -23,6 +24,7 @@ const routes = [{
   path: '/reverseRoutes',
   name: 'reverseRoutes',
   component: Layout,
+  alias:'/',
   redirect:'/reverseRoutes/reverseRoutes-1',
   meta:{
     key:"reverseRoutes",
@@ -79,6 +81,7 @@ const routes = [{
 }, {
   path:'/codemirror',
   component: Layout,
+  alias:'/',
   redirect: '/codemirror/index',
   meta:{
     key:"codemirror",
@@ -94,6 +97,7 @@ const routes = [{
 }, {
   path:'/table',
   component: Layout,
+  alias:'/',
   redirect: '/table/index',
   meta:{
     key:"table",

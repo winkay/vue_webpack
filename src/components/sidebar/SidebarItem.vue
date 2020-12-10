@@ -35,9 +35,6 @@ export default {
     return {
     }
   },
-  mounted() {
-    // console.log(this.menus)
-  },
   methods: {
     resolvePath(routePath) {
       return path.resolve(this.basePath, routePath)

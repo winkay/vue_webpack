@@ -18,19 +18,15 @@ const authCheck = (router) => async(to, from, next) => {
     } else {
       // determine whether the user has obtained his permission roles through getInfo
       let role = getRole()
-      console.log(role)
-      debugger
-      if (role) {
+      if (role && store.getters.asyncRouters.length > 0) {
         next()
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const { role } = await store.dispatch('user/getInfo', 'admin')
-
           // generate accessible routes map based on roles
           store.dispatch('permission/generateRoutes', [role]).then(() => {
-            debugger
             console.log('accessRoutes----', store.getters.asyncRouters)
             // dynamically add accessible routes
             resetRouter();
@@ -39,7 +35,6 @@ const authCheck = (router) => async(to, from, next) => {
             const redirect = decodeURIComponent(from.query.redirect || to.path)
             if (to.path === redirect) {
               // set the replace: true so the navigation will not leave a history record
-              console.log(to)
               next({ ...to, replace: true })
             } else {
               // 跳转到目的路由
