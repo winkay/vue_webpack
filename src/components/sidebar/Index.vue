@@ -9,7 +9,7 @@
   </el-menu>
 </template>
 <script>
-import { asyncRoutes, generateMenuFromRoutes } from '@/router/index'
+import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
 export default {
   name:"Index",
@@ -29,8 +29,14 @@ export default {
   data() {
     return {
       defaultActive:"",
-      menus:generateMenuFromRoutes(asyncRoutes),
       nestMenus:{}
+    }
+  },
+  computed: {
+    menus:() => {
+      return mapGetters([
+        'allRoutes'
+      ])
     }
   },
   watch: {
@@ -46,6 +52,7 @@ export default {
     }
   },
   mounted() {
+    console.log('allmenus======', this.menus)
   },
   methods: {
     handleMenuOpen(index, indexPath) {

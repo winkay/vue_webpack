@@ -65,6 +65,7 @@ export default {
       this.key = this.$route.path + +new Date();
       this.nowDate = Date.now();
       this.breadcrumbs = [];
+      debugger
       this.$route.matched.forEach((item, index) => {
         // 面包屑导航的路由传参
         let params = this.$route.params;
@@ -85,6 +86,12 @@ export default {
         })
       });
     }
+  },
+  created() {
+    console.log('created');
+  },
+  mounted() {
+    console.log(111111111111)
   },
   methods: {
     toggleCollapse() {

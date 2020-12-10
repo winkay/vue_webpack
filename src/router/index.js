@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import {getRole} from '@/utils/roles';
 import Router from 'vue-router'
 import demos from './map/demo';
 import login from './map/login';
@@ -46,36 +45,26 @@ let generateMenuFromRoutes = function (routes = []) {
   return menus;
 }
 
-function filterRouteAccess(routeList, role = "") {
-  for (let index = routeList.length - 1; index >= 0; index--) {
-    const route = routeList[index];
-    if (route.meta && route.meta.accessFlag) {
-      if (route.meta.accessFlag.includes(role)) {
-        if (route.children && route.children.length > 0) {
-          filterRouteAccess(route.children, role);
-        }
-      } else {
-        routeList.splice(index, 1);
-      }
-    } else {
-      if (route.children && route.children.length > 0) {
-        filterRouteAccess(route.children, role);
-      }
-    }
-  }
-}
-filterRouteAccess(asyncRoutes, getRole());
-
 export {
   constantsRoutes,
   asyncRoutes,
   generateMenuFromRoutes
 };
 
-let routers = new Router({
+const createRouter = () => new Router({
   mode:"history", // Vue-Router history 模式，不需要请注释掉此部分，同时修改server/app.js中的history()部分
-  routes: constantsRoutes
-});
-hooks(routers);
+  base: process.env.BASE_URL,
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantsRoutes.concat(asyncRoutes)
+})
 
-export default routers;
+const router = createRouter();
+hooks(router);
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router;

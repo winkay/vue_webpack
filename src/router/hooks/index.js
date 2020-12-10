@@ -8,14 +8,14 @@ import titleInterceptor from './beforeEach/titleInterceptor';
 import breadcrumbInterceptor from './beforeEach/breadcrumbInterceptor';
 import forceInterceptor from './beforeEach/forceInterceptor';
 import authCheck from './beforeEach/authCheck';
-import scrollToTop from './afterEach/scrollToTop'
+// import scrollToTop from './afterEach/scrollToTop'
 
 export default (router) => {
+  router.beforeEach(authCheck(router));
   router.beforeEach(titleInterceptor(router));
   router.beforeEach(forceInterceptor(router));
   router.beforeEach(breadcrumbInterceptor(router));
-  router.beforeEach(authCheck(router));
-  router.afterEach(scrollToTop);
+  // router.afterEach(scrollToTop);
 
   router.beforeEach((to, from, next) => {
     Vue.prototype.$Progress.start();

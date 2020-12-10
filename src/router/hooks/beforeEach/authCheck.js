@@ -1,41 +1,56 @@
 // 路由权限校验
 import {getToken, removeToken} from '@/utils/token'
 import {getRole} from '@/utils/roles'
-import {asyncRoutes} from '@/router/index'
+import store from '@/store'
+import { resetRouter } from '@/router'
+// import router from '../../index'
 const whiteList = ['/login', '/timeout'] // no redirect whitelist
 const authCheck = (router) => async(to, from, next) => {
+// router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
   const hasToken = getToken()
 
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      // next('/')
+      next({ path: '/' });
     } else {
       // determine whether the user has obtained his permission roles through getInfo
-      const hasRoles = getRole()
-      if (hasRoles) {
+      let role = getRole()
+      console.log(role)
+      debugger
+      if (role) {
         next()
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          // const { roles } = await store.dispatch('user/getInfo')
+          const { role } = await store.dispatch('user/getInfo', 'admin')
 
           // generate accessible routes map based on roles
-          const accessRoutes = asyncRoutes
-
-          // dynamically add accessible routes
-          router.addRoutes(accessRoutes)
-
-          // hack method to ensure that addRoutes is complete
-          // set the replace: true, so the navigation will not leave a history record
-          next({ ...to, replace: true })
+          store.dispatch('permission/generateRoutes', [role]).then(() => {
+            debugger
+            console.log('accessRoutes----', store.getters.asyncRouters)
+            // dynamically add accessible routes
+            resetRouter();
+            router.addRoutes(store.getters.asyncRouters)
+            // 请求带有 redirect 重定向时，登录自动重定向到该地址
+            const redirect = decodeURIComponent(from.query.redirect || to.path)
+            if (to.path === redirect) {
+              // set the replace: true so the navigation will not leave a history record
+              console.log(to)
+              next({ ...to, replace: true })
+            } else {
+              // 跳转到目的路由
+              next({ path: redirect })
+            }
+          })
         } catch (error) {
           // remove token and go to login page to re-login
           removeToken()
           console.error(error || 'Has Error')
-          next('/login')
+          next('/')
         }
       }
     }
@@ -49,6 +64,26 @@ const authCheck = (router) => async(to, from, next) => {
       next(`/login?redirect=${to.path}`)
     }
   }
+// });
 };
+
+/* function filterRouteAccess(routeList, role = "") {
+  for (let index = routeList.length - 1; index >= 0; index--) {
+    const route = routeList[index];
+    if (route.meta && route.meta.accessFlag) {
+      if (route.meta.accessFlag.includes(role)) {
+        if (route.children && route.children.length > 0) {
+          filterRouteAccess(route.children, role);
+        }
+      } else {
+        routeList.splice(index, 1);
+      }
+    } else {
+      if (route.children && route.children.length > 0) {
+        filterRouteAccess(route.children, role);
+      }
+    }
+  }
+} */
 
 export default authCheck;

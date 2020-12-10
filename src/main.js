@@ -3,9 +3,11 @@
 import "./assets/styles/index.css"
 import Vue from 'vue'
 import App from './App'
+import store from './store'
 import "./utils/index";
 import progressbar from 'vue-progressbar';
 import router from './router'
+// import './router/hooks/beforeEach/authCheck'
 import ElementUI from 'element-ui'
 import VueCookie from 'vue-cookie';
 import i18n from "./i18n"; // 国际化
@@ -40,6 +42,7 @@ new Vue({
   el: '#app',
   i18n,
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

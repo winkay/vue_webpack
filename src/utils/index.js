@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import axios from "./axios";
+import { Plugin } from "./request";
 import vueBackTop from "./vueBackTop";
 import vueGlobal from "./vueGlobal";
 
 const utils = {
-  axios,
+  Plugin,
   vueBackTop,
   vueGlobal
 };

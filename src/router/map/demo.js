@@ -5,29 +5,28 @@ const Codemirror = () => import(/* webpackChunkName: 'Codemirror' */ '@/views/de
 const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.vue');
 
 const routes = [{
-  path: '/',
-  name: 'helloWorld',
+  path: '/helloWorld',
   component: Layout,
-  redirect:'/helloWorld',
+  redirect: '/helloWorld/index',
+  meta:{
+    key:"helloWorld",
+    accessFlag:['0', '1'],
+    title:"route.apiTest",
+    icon:"fa-paper-plane"
+  },
   children:[{
-    path: '/helloWorld',
+    path: 'index',
     name: 'helloWorld',
-    component: HelloWorld,
-    meta:{
-      key:"helloWorld",
-      accessFlag:[0, 1],
-      title:"route.apiTest",
-      icon:"fa-paper-plane"
-    }
+    component: HelloWorld
   }]
 }, {
-  path: '/',
+  path: '/reverseRoutes',
   name: 'reverseRoutes',
   component: Layout,
   redirect:'/reverseRoutes/reverseRoutes-1',
   meta:{
     key:"reverseRoutes",
-    accessFlag:[0, 1],
+    accessFlag:['0', '1'],
     title:"route.nestedRoute",
     icon:"fa-road"
   },
@@ -38,7 +37,7 @@ const routes = [{
     redirect:'/reverseRoutes/reverseRoutes-1/reverseRoutes-1-1',
     meta:{
       key:"reverseRoutes-1",
-      accessFlag:[0],
+      accessFlag:['0'],
       title:"route.nestedRoute_1",
       icon:"fa-road"
     },
@@ -48,7 +47,7 @@ const routes = [{
       component: ReverseRoutes,
       meta:{
         key:"reverseRoutes-1-1",
-        accessFlag:[0],
+        accessFlag:['0'],
         title:"route.nestedRoute_1_1",
         icon:"fa-road"
       }
@@ -60,7 +59,7 @@ const routes = [{
     redirect:'/reverseRoutes/reverseRoutes-2',
     meta:{
       key:"reverseRoutes-2",
-      accessFlag:[1],
+      accessFlag:['1'],
       title:"route.nestedRoute_2",
       icon:"fa-road"
     },
@@ -71,43 +70,41 @@ const routes = [{
       redirect:'/reverseRoutes/reverseRoutes-2-1',
       meta:{
         key:"reverseRoutes-2-1",
-        accessFlag:[1],
+        accessFlag:['1'],
         title:"route.nestedRoute_2_1",
         icon:"fa-road"
       }
     }]
   }]
 }, {
-  path:'/',
-  name: 'codemirror',
+  path:'/codemirror',
   component: Layout,
-  redirect:'/codemirror',
+  redirect: '/codemirror/index',
+  meta:{
+    key:"codemirror",
+    accessFlag:['0', '1'],
+    title:"Codemirror",
+    icon:"fa-code"
+  },
   children:[{
-    path: '/codemirror',
+    path: 'index',
     name: 'codemirror',
-    component: Codemirror,
-    meta:{
-      key:"codemirror",
-      accessFlag:[0, 1],
-      title:"Codemirror",
-      icon:"fa-code"
-    }
+    component: Codemirror
   }]
 }, {
-  path:'/',
-  name: 'table',
+  path:'/table',
   component: Layout,
-  redirect:'/table',
+  redirect: '/table/index',
+  meta:{
+    key:"table",
+    accessFlag:['0', '1'],
+    title:"Table",
+    icon:"fa-table"
+  },
   children:[{
-    path: '/table',
+    path: 'index',
     name: 'table',
-    component: Table,
-    meta:{
-      key:"table",
-      accessFlag:[0, 1],
-      title:"Table",
-      icon:"fa-table"
-    }
+    component: Table
   }]
 }]
 

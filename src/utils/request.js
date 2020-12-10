@@ -15,9 +15,9 @@ let config = {
   // withCredentials: true, // Check cross-site Access-Control
 };
 
-const _axios = axios.create(config);
+const request = axios.create(config);
 
-_axios.interceptors.request.use(
+request.interceptors.request.use(
   function(config) {
     Vue.prototype.$Progress.start();
     // Do something before request is sent
@@ -32,7 +32,7 @@ _axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-_axios.interceptors.response.use(
+request.interceptors.response.use(
   function(response) {
     // Do something with response data
     Vue.prototype.$Progress.finish();
@@ -45,21 +45,21 @@ _axios.interceptors.response.use(
   }
 );
 
-Plugin.install = function(Vue, options) {
-  Vue.axios = _axios;
-  window.axios = _axios;
+export function Plugin(Vue, options) {
+  Vue.axios = request;
+  window.axios = request;
   Object.defineProperties(Vue.prototype, {
     axios: {
       get() {
-        return _axios;
+        return request;
       }
     },
     $axios: {
       get() {
-        return _axios;
+        return request;
       }
     }
   });
-};
+}
 
-export default Plugin;
+export default request;

@@ -1,7 +1,7 @@
 <template src="./login.html"></template>
-<style src="./login.css"></style>
+<style scoped src="./login.css"></style>
 <script>
-import i18n from '@/i18n';
+import {setToken} from '@/utils/token'
 export default {
   data() {
     return {
@@ -12,10 +12,10 @@ export default {
       },
       ruleInline: {
         account: [
-          { required: true, message: i18n.t('login.userNameWarn'), trigger: 'blur' }
+          { required: true, message: '用户名不能为空白', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: i18n.t('login.passwordWarn'), trigger: 'blur' }
+          { required: true, message: '密码不能为空白', trigger: 'blur' }
         ]
       },
       language: this.$cookie.get('language') || 'zh',
@@ -41,7 +41,6 @@ export default {
         self.loading = true;
         self.$axios({
           method: 'post',
-          contentType: "application/json",
           url: '/api/login',
           data: {
             "account": self.formInline.account,
@@ -50,8 +49,9 @@ export default {
         }).then((response) => {
           self.loading = false;
           let result = response.data;
-          self.$cookie.set('token', result.token);
-          self.$cookie.set('role', result.role);
+          setToken(result.token)
+          // self.$cookie.set('token', result.token);
+          // self.$cookie.set('role', result.role);
           this.$router.push({
             path:'/'
           })
