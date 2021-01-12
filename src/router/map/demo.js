@@ -26,6 +26,7 @@ const routes = [{
   component: Layout,
   alias:'/',
   redirect:'/reverseRoutes/reverseRoutes-1',
+  isNested:true, // 是否嵌套路由，true：子路由转换为子菜单(src\components\sidebar\SidebarItem.vue)
   meta:{
     key:"reverseRoutes",
     accessFlag:['0', '1'],
@@ -37,6 +38,7 @@ const routes = [{
     name: 'reverseRoutes-1',
     component: ReverseRoutes,
     redirect:'/reverseRoutes/reverseRoutes-1/reverseRoutes-1-1',
+    isNested:true, // 是否嵌套路由，true：子路由转换为子菜单(src\components\sidebar\SidebarItem.vue)
     meta:{
       key:"reverseRoutes-1",
       accessFlag:['0'],
@@ -58,7 +60,8 @@ const routes = [{
     path: 'reverseRoutes-2',
     name: 'reverseRoutes-2',
     component: ReverseRoutes,
-    redirect:'/reverseRoutes/reverseRoutes-2',
+    redirect:'/reverseRoutes/reverseRoutes-2/reverseRoutes-2-1',
+    isNested:true, // 是否嵌套路由，true：子路由转换为子菜单(src\components\sidebar\SidebarItem.vue)
     meta:{
       key:"reverseRoutes-2",
       accessFlag:['1'],
@@ -69,7 +72,6 @@ const routes = [{
       path: 'reverseRoutes-2-1',
       name: 'reverseRoutes-2-1',
       component: ReverseRoutes,
-      redirect:'/reverseRoutes/reverseRoutes-2-1',
       meta:{
         key:"reverseRoutes-2-1",
         accessFlag:['1'],

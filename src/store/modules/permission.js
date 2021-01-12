@@ -19,7 +19,7 @@ function hasPermission(roles, route) {
  * @param roles
  */
 export function filterAsyncRoutes(routes, roles) {
-  const res = []
+  const result = []
 
   routes.forEach(route => {
     const tmp = { ...route }
@@ -27,11 +27,11 @@ export function filterAsyncRoutes(routes, roles) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles)
       }
-      res.push(tmp)
+      result.push(tmp)
     }
   })
 
-  return res
+  return result
 }
 
 const state = {

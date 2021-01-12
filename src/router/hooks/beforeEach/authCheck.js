@@ -24,7 +24,7 @@ const authCheck = (router) => async(to, from, next) => {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { role } = await store.dispatch('user/getInfo', 'admin')
+          const { role } = await store.dispatch('user/getInfo', store.getters.account)
           // generate accessible routes map based on roles
           store.dispatch('permission/generateRoutes', [role]).then(() => {
             console.log('accessRoutes----', store.getters.asyncRouters)

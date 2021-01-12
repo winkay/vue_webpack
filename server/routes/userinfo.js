@@ -31,6 +31,11 @@ module.exports = function (options, context) {
           userName: username
         }
       }
+    } else {
+      resData = {
+        flag: false,
+        data: '找不到用户'
+      }
     }
     req.session.regenerate(function (err) {
       if (err) {

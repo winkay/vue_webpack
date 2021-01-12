@@ -40,6 +40,11 @@ export default {
         key: "en",
         iconType: "",
         name: 'En'
+      }, {
+        flg:true,
+        key:'logout',
+        iconType:'',
+        name:'退出'
       }]
     }
   },
@@ -50,6 +55,11 @@ export default {
         case 'en':
           this.$cookie.set('language', index);
           this.$i18n.locale = index;
+          document.location.reload();
+          break;
+        case 'logout':
+          this.$cookie.delete('role');
+          this.$cookie.delete('token');
           document.location.reload();
           break;
       }
