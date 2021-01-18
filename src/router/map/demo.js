@@ -1,5 +1,5 @@
 const HelloWorld = () => import(/* webpackChunkName: 'HelloWorld' */ '@/views/demo/HelloWorld.vue');
-const ReverseRoutes = () => import(/* webpackChunkName: 'ReverseRoutes' */ '@/views/demo/ReverseRoutes.vue');
+const NestedRoutes = () => import(/* webpackChunkName: 'NestedRoutes' */ '@/views/demo/NestedRoutes.vue');
 const Codemirror = () => import(/* webpackChunkName: 'Codemirror' */ '@/views/demo/Codemirror.vue');
 const Table = () => import(/* webpackChunkName: 'Table' */ '@/views/demo/Table.vue');
 
@@ -15,58 +15,58 @@ const routes = [{
     icon:"fa-paper-plane"
   }
 }, {
-  path: '/reverseRoutes',
-  name: 'reverseRoutes',
+  path: '/nestedRoutes',
+  name: 'nestedRoutes',
   alias: '/',
-  component: ReverseRoutes,
+  component: NestedRoutes,
   meta:{
-    key:"reverseRoutes",
-    accessFlag:"m.reverseRoutes",
+    key:"nestedRoutes",
+    accessFlag:"m.nestedRoutes",
     title:"route.nestedRoute",
     icon:"fa-road"
   },
   children:[{
-    path: 'reverseRoutes-1',
-    name: 'reverseRoutes-1',
+    path: 'nestedRoutes-1',
+    name: 'nestedRoutes-1',
     alias: '/',
-    component: ReverseRoutes,
+    component: NestedRoutes,
     meta:{
-      key:"reverseRoutes-1",
-      accessFlag:"m.reverseRoutes-1",
+      key:"nestedRoutes-1",
+      accessFlag:"m.nestedRoutes-1",
       title:"route.nestedRoute_1",
       icon:"fa-road"
     },
     children:[{
-      path: 'reverseRoutes-1-1',
-      name: 'reverseRoutes-1-1',
+      path: 'nestedRoutes-1-1',
+      name: 'nestedRoutes-1-1',
       alias: '/',
-      component: ReverseRoutes,
+      component: NestedRoutes,
       meta:{
-        key:"reverseRoutes-1-1",
-        accessFlag:"m.reverseRoutes-1-1",
+        key:"nestedRoutes-1-1",
+        accessFlag:"m.nestedRoutes-1-1",
         title:"route.nestedRoute_1_1",
         icon:"fa-road"
       }
     }]
   }, {
-    path: 'reverseRoutes-2',
-    name: 'reverseRoutes-2',
+    path: 'nestedRoutes-2',
+    name: 'nestedRoutes-2',
     alias: '/',
-    component: ReverseRoutes,
+    component: NestedRoutes,
     meta:{
-      key:"reverseRoutes-2",
-      accessFlag:"m.reverseRoutes-2",
+      key:"nestedRoutes-2",
+      accessFlag:"m.nestedRoutes-2",
       title:"route.nestedRoute_2",
       icon:"fa-road"
     },
     children:[{
-      path: 'reverseRoutes-2-1',
-      name: 'reverseRoutes-2-1',
+      path: 'nestedRoutes-2-1',
+      name: 'nestedRoutes-2-1',
       alias: '/',
-      component: ReverseRoutes,
+      component: NestedRoutes,
       meta:{
-        key:"reverseRoutes-2-1",
-        accessFlag:"m.reverseRoutes-2-1",
+        key:"nestedRoutes-2-1",
+        accessFlag:"m.nestedRoutes-2-1",
         title:"route.nestedRoute_2_1",
         icon:"fa-road"
       }
@@ -80,7 +80,7 @@ const routes = [{
   meta:{
     key:"codemirror",
     accessFlag:"m.codemirror",
-    title:"Codemirror",
+    title:"route.codemirror",
     icon:"fa-code"
   }
 }, {
@@ -91,7 +91,7 @@ const routes = [{
   meta:{
     key:"table",
     accessFlag:"m.table",
-    title:"Table",
+    title:"route.table",
     icon:"fa-table"
   }
 }]
