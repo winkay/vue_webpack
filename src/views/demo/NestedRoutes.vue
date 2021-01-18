@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'ReverseRoutes',
+  name: 'NestedRoutes',
   data () {
     return {
       msg: ''

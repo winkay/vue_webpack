@@ -1,6 +1,7 @@
 // 路由权限校验
 import {getToken, removeToken} from '@/utils/token'
 import {getRole} from '@/utils/roles'
+import {getAccount} from '@/utils/account'
 import store from '@/store'
 import { resetRouter } from '@/router'
 // import router from '../../index'
@@ -18,13 +19,14 @@ const authCheck = (router) => async(to, from, next) => {
     } else {
       // determine whether the user has obtained his permission roles through getInfo
       let role = getRole()
+      const account = getAccount();
       if (role && store.getters.asyncRouters.length > 0) {
         next()
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { role } = await store.dispatch('user/getInfo', store.getters.account)
+          const { role } = await store.dispatch('user/getInfo', store.getters.account || account)
           // generate accessible routes map based on roles
           store.dispatch('permission/generateRoutes', [role]).then(() => {
             console.log('accessRoutes----', store.getters.asyncRouters)

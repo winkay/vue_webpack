@@ -1,21 +1,29 @@
 import request from '@/utils/request'
 import {setRole} from '@/utils/roles'
+import {setAccount} from '@/utils/account'
 import {setToken} from '@/utils/token'
 const state = {
   role: '',
   userName:'',
-  account:''
+  account:'',
+  token:''
 }
 
 const mutations = {
   SET_ROLE: (state, role) => {
     state.role = role
+    setRole(role)
   },
   SET_USER_NAME: (state, userName) => {
     state.userName = userName
   },
   SET_ACCOUNT: (state, account) => {
     state.account = account
+    setAccount(account)
+  },
+  SET_TOKEN: (state, token) => {
+    state.token = token
+    setToken(token)
   }
 }
 
@@ -27,11 +35,10 @@ const actions = {
         url:`/api/login`,
         data
       }).then((res) => {
-        setRole(res.data.role)
         commit('SET_ROLE', res.data.role)
         commit('SET_USER_NAME', res.data.userName)
         commit('SET_ACCOUNT', res.data.account)
-        setToken(res.data.token)
+        commit('SET_TOKEN', res.data.token)
         resolve(res)
       }).catch(error => {
         reject(error)
