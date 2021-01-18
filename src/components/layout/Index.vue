@@ -64,6 +64,14 @@ export default {
     '$route' (to, from) {
       this.key = this.$route.path;
       this.nowDate = Date.now();
+      this.generateBreadCrumbs();
+    }
+  },
+  mounted() {
+    this.generateBreadCrumbs();
+  },
+  methods: {
+    generateBreadCrumbs() {
       this.breadcrumbs = [];
       this.$route.matched.forEach((item, index) => {
         // 面包屑导航的路由传参
@@ -84,9 +92,7 @@ export default {
           name: item.meta.title
         })
       });
-    }
-  },
-  methods: {
+    },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse;
       this.iconSize = this.isCollapse?"icon-size-20":"icon-size-16";

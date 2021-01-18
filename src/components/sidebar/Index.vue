@@ -34,7 +34,6 @@ export default {
   watch: {
     // 切换页面
     '$route' (to, from) {
-      console.log(this.$route, this.$route.matched[0].path)
       this.defaultActive = this.$route.matched[0].path;
     }
   },
